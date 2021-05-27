@@ -1,5 +1,3 @@
-import vehiclePicture from "../assets/Daco_4190901.png";
-
 export const getAllFeatures = () => {
   return Promise.resolve([
     { id: 1, name: "Component 1" },
@@ -23,6 +21,24 @@ export const getVehicle = () => {
     crewCab: true,
     traction: "4X4",
     fuel: "Diesel",
-    picture: vehiclePicture
+    picture: "Daco_4190901.png"
   });
+};
+
+export const getTutorials = () => {
+  return Promise.resolve([
+    {
+      id: 1,
+      name: "¿Cómo manejar sobre nieve?",
+      description:
+        "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre nieve",
+      picture: "tbd"
+    },
+    {
+      id: 2,
+      name: "¿Cómo manejar sobre arena?",
+      description:
+        "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre arena"
+    }
+  ]);
 };

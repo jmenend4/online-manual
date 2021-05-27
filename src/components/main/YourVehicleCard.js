@@ -15,7 +15,7 @@ const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
   return (
     <>
       <div
-        className="your-vehicle-card"
+        className="card"
         style={{
           "--width": document.documentElement.clientWidth - 16,
           "--width-scale": widthScale,
@@ -25,7 +25,7 @@ const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
         <div className="your-vehicle-title">Tu Vehículo</div>
         <img
           className="your-vehicle-picture"
-          src="../../../assets/Daco_4190901.png"
+          src={"../../../assets/" + vehicle.picture}
         />
         <Accordeon
           title={vehicle.description === undefined ? "" : vehicle.description}

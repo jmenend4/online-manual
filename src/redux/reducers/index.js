@@ -3,12 +3,14 @@ import featuresCarouselHMovementDelta from "./featuresCarouselReducer";
 import features from "./featuresReducer";
 import vehicle from "./vehicleReducer";
 import constants from "./constantsReducer";
+import tutorials from "./tutorialsReducer";
 
 const rootReducer = combineReducers({
   featuresCarouselHMovementDelta,
   features,
   vehicle,
-  constants
+  constants,
+  tutorials
 });
 
 export default rootReducer;

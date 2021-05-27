@@ -17,6 +17,7 @@
   font-weight: bold;
   letter-spacing: 0.38px;
   line-height: 24px;
+  cursor: default;
 }
 
 /* .accordeon > .title-container .chevron {
