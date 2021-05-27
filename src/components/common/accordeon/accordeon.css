@@ -1,0 +1,23 @@
+.accordeon {
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+}
+.accordeon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+.accordeon-title {
+  height: 24px;
+  color: #171717;
+  font-family: "SF Pro Display", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.38px;
+  line-height: 24px;
+}
+
+/* .accordeon > .title-container .chevron {
+} */
