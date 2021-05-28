@@ -1,5 +1,6 @@
 export default {
-  featuresCarouselHMovementDelta: 0,
+  featuresCarouselDelta: 0,
+  tutorialsCarouselDelta: 0,
   features: [],
   vehicle: {},
   constants: {},

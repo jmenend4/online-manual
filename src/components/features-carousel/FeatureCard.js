@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as featuresCarouselActions from "../../redux/actions/featuresCarouselActions";
+import * as carouselActions from "../../redux/actions/carouselActions";
 import "./feature-card.css";
 
 const FeatureCard = ({
@@ -9,13 +9,12 @@ const FeatureCard = ({
   index,
   title,
   stepCarousel,
-  hMovementDelta,
-  setHMovementDelta
+  delta,
+  moveFeatures
 }) => {
   const [leftPosition, setLeftPosition] = useState(0);
   const [bottomPosition, setBottomPosition] = useState(5);
   const startX = useRef(0);
-  const card = useRef(null);
 
   useEffect(() => {
     const _leftPosition = calcLeftPosition();
@@ -24,12 +23,12 @@ const FeatureCard = ({
   });
 
   const calcLeftPosition = () => {
-    return 24 + index * 335 + hMovementDelta;
+    return 24 + index * 335 + delta;
   };
 
   const calcBottomPosition = (_leftPosition) => {
     let _bottomPosition = 5;
-    if (card.current.getBoundingClientRect().left > 24) {
+    if (_leftPosition > 24) {
       _bottomPosition = 5 - 212 * ((_leftPosition - 24) / 327);
     } else {
       _bottomPosition = 5 - 212 * ((24 - _leftPosition) / 327);
@@ -44,18 +43,17 @@ const FeatureCard = ({
 
   const onCardMove = (e) => {
     e.stopPropagation();
-    setHMovementDelta(e.touches[0].pageX - startX.current);
+    moveFeatures(e.touches[0].pageX - startX.current);
   };
 
   const onMovementEnd = () => {
-    const steps = -Math.round(hMovementDelta / 327);
+    const steps = -Math.round(delta / 327);
     stepCarousel(featureIndex, steps);
-    setHMovementDelta(0);
+    moveFeatures(0);
   };
 
   return (
     <div
-      ref={card}
       className="component-mini-card"
       onTouchStart={(e) => onCardMovementStart(e)}
       onDragStart={(e) => onCardMovementStart(e)}
@@ -79,16 +77,16 @@ FeatureCard.propTypes = {
   index: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   stepCarousel: PropTypes.func.isRequired,
-  hMovementDelta: PropTypes.number.isRequired,
-  setHMovementDelta: PropTypes.func.isRequired
+  delta: PropTypes.number.isRequired,
+  moveFeatures: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = {
-  setHMovementDelta: featuresCarouselActions.setHmovementDelta
+  moveFeatures: carouselActions.moveFeatures
 };
 
 const mapStateToProps = (state) => {
-  return { hMovementDelta: state.featuresCarouselHMovementDelta };
+  return { delta: state.featuresCarouselDelta };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeatureCard);

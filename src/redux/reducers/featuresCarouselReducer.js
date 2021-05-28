@@ -2,11 +2,11 @@ import initialState from "./initialState";
 import actionTypes from "../actions/actionTypes";
 
 const featuresCarouselReducer = (
-  delta = initialState.featuresCarouselHMovementDelta,
+  delta = initialState.featuresCarouselDelta,
   action
 ) => {
   switch (action.type) {
-    case actionTypes.SET_FEATURES_CAROUSEL_HMOVEMENT_DELTA: {
+    case actionTypes.MOVE_FEATURES: {
       return action.delta;
     }
     default: {

@@ -32,13 +32,14 @@ export const getTutorials = () => {
       name: "¿Cómo manejar sobre nieve?",
       description:
         "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre nieve",
-      picture: "tbd"
+      picture: "snowy-ranger.jpg"
     },
     {
       id: 2,
       name: "¿Cómo manejar sobre arena?",
       description:
-        "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre arena"
+        "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre arena",
+      picture: "sandy-ranger.jpg"
     }
   ]);
 };

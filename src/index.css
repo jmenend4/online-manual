@@ -2,14 +2,14 @@
 *::before,
 *::after {
   box-sizing: inherit;
-  overflow: inherit;
+  overflow-x: inherit;
 }
 
 html {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
