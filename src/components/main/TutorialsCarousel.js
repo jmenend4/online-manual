@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as tutorialsActions from "../../redux/actions/tutorialsActions";
 import TutorialCard from "./TutorialCard";
 import "./main.css";
+import CarouselPaginator from "../common/carousel/CarouselPaginator";
 
 const TutorialsCarousel = ({ tutorials, getTutorials }) => {
   const [cards, setCards] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsLowerBorder, setCardsLowerBorder] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
 
   useEffect(() => {
     if (tutorials.length === 0) {
       getTutorials();
     } else setVisibleCardsByIndex(0);
   }, [tutorials.length]);
+
+  useEffect(() => {
+    const cards = document.getElementsByClassName("tutorial-card");
+    if (cards.length > 0) {
+      setCardsLowerBorder(cards[0].getBoundingClientRect().height);
+      setCardWidth(cards[0].getBoundingClientRect().width);
+    }
+  });
 
   const setVisibleCardsByIndex = (index) => {
     const _cards = tutorials.map((tutorial, _idx) => (
@@ -30,6 +42,7 @@ const TutorialsCarousel = ({ tutorials, getTutorials }) => {
   const stepCarousel = (tutorialIndex, steps) => {
     const index = calcIndexBySteps(tutorialIndex, steps);
     setVisibleCardsByIndex(index);
+    setCurrentIndex(index);
   };
 
   const calcIndexBySteps = (tutorialIndex, steps) => {
@@ -43,7 +56,17 @@ const TutorialsCarousel = ({ tutorials, getTutorials }) => {
     return index;
   };
 
-  return <>{cards}</>;
+  return (
+    <>
+      {cards}{" "}
+      <CarouselPaginator
+        index={currentIndex}
+        cardsContent={tutorials}
+        top={cardsLowerBorder + 24}
+        cardWidth={cardWidth}
+      />{" "}
+    </>
+  );
 };
 
 TutorialsCarousel.propTypes = {
