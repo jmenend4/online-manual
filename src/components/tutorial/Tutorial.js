@@ -7,6 +7,9 @@ const Tutorial = ({ tutorials, tutorial, getTutorials, history }) => {
   useEffect(() => {
     if (tutorials.length === 0) {
       getTutorials();
+    } else if (tutorial === {}) {
+      // todo
+      //history.push("/notfound")
     }
   }, [tutorials.length, tutorial]);
 };
@@ -18,11 +21,16 @@ Tutorial.propTypes = {
   history: PropTypes.object.isRequired
 };
 
+const selectTutorial = (tutorials, id) => {
+  return tutorials.find((tutorial) => tutorial.id == id) || {};
+};
+
 const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
   return {
-    tutorial: state.tutorials.find(
-      (tutorial) => tutorial.id == ownProps.match.params.id
-    )
+    tutorials: state.tutorials,
+    tutorial:
+      id && state.tutorials > 0 ? selectTutorial(state.tutorials, id) : {}
   };
 };
 
