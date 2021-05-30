@@ -5,6 +5,7 @@ import features from "./featuresReducer";
 import vehicle from "./vehicleReducer";
 import constants from "./constantsReducer";
 import tutorials from "./tutorialsReducer";
+import apiCallsInProgress from "./apiStatusReducer";
 
 const rootReducer = combineReducers({
   featuresCarouselDelta,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   features,
   vehicle,
   constants,
-  tutorials
+  tutorials,
+  apiCallsInProgress
 });
 
 export default rootReducer;

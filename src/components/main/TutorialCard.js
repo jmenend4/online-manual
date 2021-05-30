@@ -8,6 +8,7 @@ const TutorialCard = ({
   tutorialIndex,
   tutorial,
   stepCarousel,
+  onCardClick,
   delta,
   widthScale,
   moveTutorials
@@ -40,12 +41,18 @@ const TutorialCard = ({
     moveTutorials(0);
   };
 
+  const onClick = (e) => {
+    e.stopPropagation();
+    onCardClick(tutorial.id);
+  };
+
   return (
     <div
       className="tutorial-card"
       onTouchStart={(e) => onCardMovementStart(e)}
       onTouchMove={(e) => onCardMove(e)}
-      onTouchEnd={() => onMovementEnd()}
+      onTouchEnd={(e) => onMovementEnd(e)}
+      onClick={(e) => onClick(e)}
       style={{
         backgroundImage: `url(../../assets/${tutorial.picture})`,
         backgroundSize: "cover",
@@ -89,6 +96,7 @@ TutorialCard.propTypes = {
   tutorialIndex: PropTypes.number.isRequired,
   tutorial: PropTypes.object.isRequired,
   stepCarousel: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
   delta: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
   moveTutorials: PropTypes.func.isRequired

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as tutorialsActions from "../../redux/actions/tutorialsActions";
@@ -6,7 +6,7 @@ import TutorialCard from "./TutorialCard";
 import "./main.css";
 import CarouselPaginator from "../common/carousel/CarouselPaginator";
 
-const TutorialsCarousel = ({ tutorials, getTutorials }) => {
+const TutorialsCarousel = ({ onCardClick, tutorials, getTutorials }) => {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsLowerBorder, setCardsLowerBorder] = useState(0);
@@ -34,6 +34,7 @@ const TutorialsCarousel = ({ tutorials, getTutorials }) => {
         carouselIndex={_idx - index}
         tutorial={tutorial}
         stepCarousel={stepCarousel}
+        onCardClick={onCardClick}
       />
     ));
     setCards(_cards);
@@ -70,6 +71,7 @@ const TutorialsCarousel = ({ tutorials, getTutorials }) => {
 };
 
 TutorialsCarousel.propTypes = {
+  onCardClick: PropTypes.func.isRequired,
   tutorials: PropTypes.array.isRequired,
   getTutorials: PropTypes.func.isRequired
 };

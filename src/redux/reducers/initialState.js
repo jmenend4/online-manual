@@ -4,5 +4,6 @@ export default {
   features: [],
   vehicle: {},
   constants: {},
-  tutorials: []
+  tutorials: [],
+  apiCallsInProgress: 0
 };

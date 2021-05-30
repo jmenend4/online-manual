@@ -32,7 +32,29 @@ export const getTutorials = () => {
       name: "¿Cómo manejar sobre nieve?",
       description:
         "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre nieve",
-      picture: "snowy-ranger.jpg"
+      picture: "snowy-ranger.jpg",
+      main: [
+        {
+          order: 1,
+          type: "regular",
+          title: "¿Qué aprenderás?",
+          content:
+            "En este tutorial aprenderás a manejar sobre terrenos nevados con tu Ford Ranger de manera correcta."
+        },
+        {
+          order: 2,
+          type: "regular",
+          title: "Antes de empezar",
+          content:
+            "Ten cuidado de dañas el paragolpes con piedras y escombros del terreno.<br><br>Considerá tener protección inferior para el motor, ruedas para offroad con su la presión correcta.<br><br>Revisá y tené en cuenta dónde están los puntos de remolque de tu vehículo. Te serán de utilidad ante cualquier eventualidad."
+        },
+        {
+          order: 3,
+          type: "related_features",
+          title: "Componentes relacionados",
+          features: []
+        }
+      ]
     },
     {
       id: 2,
