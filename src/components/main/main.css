@@ -86,12 +86,12 @@
   box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
 }
 
-.tutorial-card-mask {
+.tutorial-card > .tutorial-card-mask {
   position: absolute;
   bottom: 0;
 }
 
-.tutorial-name {
+.tutorial-card > .tutorial-name {
   position: absolute;
   left: 16px;
   bottom: 56px;
@@ -108,7 +108,7 @@
   cursor: default;
 }
 
-.tutorial-description {
+.tutorial-card > .tutorial-description {
   position: absolute;
   left: 16px;
   bottom: 16px;

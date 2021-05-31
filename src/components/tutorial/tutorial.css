@@ -1,0 +1,52 @@
+.tutorial-title {
+  height: 128px;
+  width: calc(var(--width-scale) * 414px);
+  border-radius: 8px;
+  padding-left: 64px;
+  padding-top: 48px;
+  background: linear-gradient(
+    315.08deg,
+    rgba(90, 200, 250, 1) 0%,
+    rgba(0, 122, 255, 1) 100%
+  );
+  box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+}
+
+.tutorial-title > .chevron-back {
+  position: absolute;
+  left: 40px;
+  top: 56px;
+  height: 24;
+  width: 24;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 1);
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.tutorial-title > .tutorial-name {
+  display: inline;
+  height: 24px;
+  color: rgba(255, 255, 255, 1);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.32px;
+  line-height: 24px;
+  margin: 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.tutorial-title > .subtitle {
+  height: 24px;
+  width: 158px;
+  color: rgba(255, 255, 255, 1);
+  font-family: "SF Pro Text";
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  margin: 8px 0 0 0;
+  cursor: default;
+}
