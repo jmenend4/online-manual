@@ -33,26 +33,73 @@ export const getTutorials = () => {
       description:
         "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre nieve",
       picture: "snowy-ranger.jpg",
-      main: [
+      steps: [
         {
+          type: "intro",
+          order: 0,
+          sections: [
+            {
+              order: 1,
+              type: "regular",
+              title: "¿Qué aprenderás?",
+              content:
+                "En este tutorial aprenderás a manejar sobre terrenos nevados con tu Ford Ranger de manera correcta."
+            },
+            {
+              order: 2,
+              type: "regular",
+              title: "Antes de empezar",
+              content:
+                "Tené cuidado, no dañes el paragolpes con piedras y escombros del terreno.<br><br>Considerá tener protección inferior para el motor, ruedas para offroad con su la presión correcta.<br><br>Localizá los puntos de remolque de tu vehículo. Te serán de utilidad ante cualquier eventualidad."
+            },
+            {
+              order: 3,
+              type: "related_features",
+              title: "Componentes relacionados",
+              content: []
+            }
+          ]
+        },
+        {
+          type: "step",
           order: 1,
-          type: "regular",
-          title: "¿Qué aprenderás?",
-          content:
-            "En este tutorial aprenderás a manejar sobre terrenos nevados con tu Ford Ranger de manera correcta."
-        },
-        {
-          order: 2,
-          type: "regular",
-          title: "Antes de empezar",
-          content:
-            "Ten cuidado de dañas el paragolpes con piedras y escombros del terreno.<br><br>Considerá tener protección inferior para el motor, ruedas para offroad con su la presión correcta.<br><br>Revisá y tené en cuenta dónde están los puntos de remolque de tu vehículo. Te serán de utilidad ante cualquier eventualidad."
-        },
-        {
-          order: 3,
-          type: "related_features",
-          title: "Componentes relacionados",
-          features: []
+          name: "Frená tu vehículo",
+          description: "Para cambiar de 2h a 4L el vehículo debe estar quieto",
+          image: "car.png",
+          sections: [
+            {
+              order: 1,
+              type: "with_icon",
+              title: "Consejos",
+              content:
+                "Te recomendamos tener activado el modo indicado para el terreno en que te encuentres antes de afrontar una situación complicada.",
+              icon: "shield"
+            },
+            {
+              order: 2,
+              type: "warning",
+              title: "Advertencias",
+              content: "Acá vá una advertencia"
+            },
+            {
+              order: 3,
+              type: "videos",
+              title: "Videos que te sugerimos",
+              content: [
+                "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
+                "https://www.youtube.com/watch?v=CvsNHBVggBM",
+                "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
+                "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
+                "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
+              ]
+            },
+            {
+              order: 4,
+              type: "related_features",
+              title: "Componentes relacionados",
+              content: []
+            }
+          ]
         }
       ]
     },

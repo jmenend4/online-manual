@@ -1,4 +1,5 @@
 .tutorial-title {
+  position: relative;
   height: 128px;
   width: calc(var(--width-scale) * 414px);
   border-radius: 8px;
@@ -14,8 +15,8 @@
 
 .tutorial-title > .chevron-back {
   position: absolute;
-  left: 40px;
-  top: 56px;
+  left: 32px;
+  top: 50px;
   height: 24;
   width: 24;
   font-size: 24px;
@@ -49,4 +50,140 @@
   line-height: 24px;
   margin: 8px 0 0 0;
   cursor: default;
+}
+
+.section-text-content {
+  color: rgba(102, 102, 102, 1);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  margin: 0;
+  cursor: default;
+}
+
+.tutorial-step-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 88px;
+  width: calc(var(--width-scale) * 414px);
+  padding-left: 64px;
+  padding-top: 32px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.tutorial-step-header > .tutorial-step-title {
+  height: 24px;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display";
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 24px;
+  margin: 0;
+  cursor: default;
+}
+
+.tutorial-step-header > .chevron-back {
+  position: absolute;
+  left: 32px;
+  top: 34px;
+  height: 24;
+  width: 24;
+  font-size: 24px;
+  color: rgb(0, 122, 255);
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.tutorial-step-subheader {
+  position: fixed;
+  top: 86px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  width: calc(var(--width-scale) * 414px);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.tutorial-step-subheader > .step-name {
+  height: 22px;
+  color: rgba(0, 122, 255, 1);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+  text-align: center;
+  margin: 12px 0 0 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.tutorial-step-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--width-scale) * 398px);
+  border-radius: 8px;
+  padding: 16px 80px 32px 80px;
+  margin: 16px 8px 32px 8px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+}
+
+.tutorial-step-card > .step-indicator {
+  height: 24px;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  text-align: center;
+  margin: 16px 0;
+  cursor: default;
+}
+
+.tutorial-step-card > .step-image {
+  /* margin: 32px 0 44px 0; */
+}
+
+.tutorial-step-card > .step-name {
+  height: 24px;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 24px;
+  text-align: center;
+  margin: 44px 0 0 0;
+  cursor: default;
+}
+
+.tutorial-step-card > .step-description {
+  height: 48px;
+  color: rgb(102, 102, 102);
+  font-family: "SF Pro Text";
+  font-size: 16px;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  text-align: center;
+  margin: 8px 0 32px 0;
+  cursor: default;
+}
+
+.section-with-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

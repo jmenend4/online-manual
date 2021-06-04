@@ -1,27 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import * as tutorialsActions from "../../redux/actions/tutorialsActions";
 import * as vehicleActions from "../../redux/actions/vehicleActions";
 import PropTypes from "prop-types";
 import TutorialIntro from "./TutorialIntro";
+import Accordeon from "../common/accordeon/Accordeon";
+import TutorialStep from "./TutorialStep";
 
 const Tutorial = ({
   tutorials,
   tutorial,
   vehicle,
-  widthScale,
   getTutorials,
   getVehicle,
   history
 }) => {
+  const [steps, setSteps] = useState([]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const step = useRef(0);
+
   useEffect(() => {
     if (tutorials.length === 0) {
       getTutorials();
-    } else if (tutorial === {}) {
+    } else if (tutorial.id != undefined) {
+      buildSteps();
+    } else {
       // todo
       //history.push("/notfound")
     }
-  }, [tutorials.length, tutorial]);
+  }, [tutorials.length, tutorial.id]);
 
   useEffect(() => {
     if (vehicle.id === undefined) {
@@ -29,27 +36,55 @@ const Tutorial = ({
     }
   }, [vehicle]);
 
-  const onBackClick = () => {
-    history.push("/");
+  const buildSteps = () => {
+    const _steps = [];
+    tutorial.steps.forEach((step, i) => {
+      if (step.type === "intro") {
+        _steps.push(
+          <TutorialIntro
+            tutorial={tutorial}
+            vehicle={vehicle}
+            onBackClick={onBackClick}
+            onInitClick={onFowardClick}
+          />
+        );
+      } else {
+        _steps.push(
+          <TutorialStep
+            tutorial={tutorial}
+            thisStep={i}
+            totalSteps={tutorial.steps.length - 1}
+            isLastStep={tutorial.steps.length === i + 1}
+            onNextClick={onFowardClick}
+            onBackClick={onBackClick}
+          />
+        );
+      }
+    });
+    setSteps(_steps);
   };
 
-  return (
-    <>
-      <TutorialIntro
-        tutorial={tutorial}
-        vehicle={vehicle}
-        widthScale={widthScale}
-        onBackClick={onBackClick}
-      />
-    </>
-  );
+  const onBackClick = () => {
+    if (step.current === 0) {
+      history.push("/");
+    }
+    setCurrentStep(--step.current);
+  };
+
+  const onFowardClick = () => {
+    if (step.current === tutorial.steps.length - 1) {
+      history.push("/");
+    }
+    setCurrentStep(++step.current);
+  };
+
+  return <>{steps.length > 0 && steps[currentStep]}</>;
 };
 
 Tutorial.propTypes = {
   tutorials: PropTypes.array.isRequired,
   tutorial: PropTypes.object.isRequired,
   vehicle: PropTypes.object.isRequired,
-  widthScale: PropTypes.number.isRequired,
   getTutorials: PropTypes.func.isRequired,
   getVehicle: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
@@ -67,8 +102,7 @@ const mapStateToProps = (state, ownProps) => {
       id && state.tutorials.length > 0
         ? selectTutorial(state.tutorials, id)
         : {},
-    vehicle: state.vehicle,
-    widthScale: state.constants.widthScale
+    vehicle: state.vehicle
   };
 };
 

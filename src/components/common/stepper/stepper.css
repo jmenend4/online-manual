@@ -1,0 +1,36 @@
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--steper-width);
+}
+
+.stepper > .in-card-stepper-dot {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: rgb(0, 122, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 122, 255, 0.2);
+}
+
+.stepper > .in-card-stepper-dash {
+  height: 4px;
+  width: 16px;
+  border-radius: 4px;
+  background-color: rgb(200, 199, 204);
+}
+
+.stepper > .in-header-stepper-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: rgb(0, 122, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 122, 255, 0.2);
+}
+
+.stepper > .in-header-stepper-dash {
+  height: 2px;
+  width: 16px;
+  border-radius: 4px;
+  background-color: rgb(200, 199, 204);
+}

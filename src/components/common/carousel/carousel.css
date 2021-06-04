@@ -1,6 +1,6 @@
 .carousel-paginator {
   position: relative;
-  top: var(--top);
+  top: 0px;
   left: var(--left);
   height: 24px;
   display: flex;

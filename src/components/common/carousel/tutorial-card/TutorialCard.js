@@ -1,63 +1,45 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import * as carouselActions from "../../redux/actions/carouselActions";
+import { useCarouselCard } from "../../../../hooks/carouselHooks";
+import * as carouselActions from "../../../../redux/actions/carouselActions";
+import "./tutorial-card.css";
 
 const TutorialCard = ({
-  carouselIndex,
-  tutorialIndex,
-  tutorial,
+  cardIndex,
+  tutorials,
+  currentIndex,
   stepCarousel,
   onCardClick,
   delta,
   widthScale,
-  moveTutorials
+  moveCarousel
 }) => {
-  const [leftPosition, setLeftPosition] = useState(0);
-  const startX = useRef(0);
-
-  useEffect(() => {
-    const _leftPosition = calcLeftPosition();
-    setLeftPosition(_leftPosition);
-  });
-
-  const calcLeftPosition = () => {
-    return 24 + carouselIndex * (342 * widthScale + 16) + delta;
-  };
-
-  const onCardMovementStart = (e) => {
-    e.stopPropagation();
-    startX.current = e.touches[0].pageX;
-  };
-
-  const onCardMove = (e) => {
-    e.stopPropagation();
-    moveTutorials(e.touches[0].pageX - startX.current);
-  };
-
-  const onMovementEnd = () => {
-    const steps = -Math.round(delta / 327);
-    stepCarousel(tutorialIndex, steps);
-    moveTutorials(0);
-  };
+  const [leftPosition, onMoveStart, onMove, onMoveEnd] = useCarouselCard(
+    cardIndex,
+    342 * widthScale,
+    currentIndex,
+    delta,
+    moveCarousel,
+    stepCarousel,
+    tutorials.length
+  );
 
   const onClick = (e) => {
     e.stopPropagation();
-    onCardClick(tutorial.id);
+    onCardClick(tutorials[cardIndex].id);
   };
 
   return (
     <div
       className="tutorial-card"
-      onTouchStart={(e) => onCardMovementStart(e)}
-      onTouchMove={(e) => onCardMove(e)}
-      onTouchEnd={(e) => onMovementEnd(e)}
+      onTouchStart={(e) => onMoveStart(e)}
+      onTouchMove={(e) => onMove(e)}
+      onTouchEnd={(e) => onMoveEnd(e)}
       onClick={(e) => onClick(e)}
       style={{
-        backgroundImage: `url(../../assets/${tutorial.picture})`,
+        backgroundImage: `url(../../assets/${tutorials[cardIndex].picture})`,
         backgroundSize: "cover",
-        // backgroundRepeat: "no-repeat",
-        "--index": carouselIndex,
         "--left-position": leftPosition + "px",
         "--width-scale": widthScale
       }}
@@ -85,32 +67,34 @@ const TutorialCard = ({
           fill="url('#tutorialCardMaskGradient')"
         />
       </svg>
-      <p className="tutorial-name">{tutorial.name}</p>
-      <p className="tutorial-description">{tutorial.description}</p>
+      <p className="tutorial-name">{tutorials[cardIndex].name}</p>
+      <p className="tutorial-description">{tutorials[cardIndex].description}</p>
     </div>
   );
 };
 
 TutorialCard.propTypes = {
-  carouselIndex: PropTypes.number.isRequired,
-  tutorialIndex: PropTypes.number.isRequired,
-  tutorial: PropTypes.object.isRequired,
+  cardIndex: PropTypes.number.isRequired,
+  tutorials: PropTypes.array.isRequired,
+  currentIndex: PropTypes.number.isRequired,
   stepCarousel: PropTypes.func.isRequired,
   onCardClick: PropTypes.func.isRequired,
   delta: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
-  moveTutorials: PropTypes.func.isRequired
+  moveCarousel: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    delta: state.tutorialsCarouselDelta,
+    delta: state.tutorialsCarousel.delta,
+    currentIndex: state.tutorialsCarousel.currentIndex,
     widthScale: state.constants.widthScale
   };
 };
 
 const mapDispatchToProps = {
-  moveTutorials: carouselActions.moveTutorials
+  moveCarousel: carouselActions.moveTutorials,
+  stepCarousel: carouselActions.stepTutorialsCarousel
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorialCard);

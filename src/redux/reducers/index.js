@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import featuresCarouselDelta from "./featuresCarouselReducer";
-import tutorialsCarouselDelta from "./tutorialsCarouselReducer";
+import tutorialsCarousel from "./tutorialsCarouselReducer";
 import features from "./featuresReducer";
 import vehicle from "./vehicleReducer";
 import constants from "./constantsReducer";
@@ -9,7 +9,7 @@ import apiCallsInProgress from "./apiStatusReducer";
 
 const rootReducer = combineReducers({
   featuresCarouselDelta,
-  tutorialsCarouselDelta,
+  tutorialsCarousel,
   features,
   vehicle,
   constants,

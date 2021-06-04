@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import RedWarningSmall from "../icons/RedWarningSmall";
 import "./accordeon.css";
 
 const Accordeon = ({
@@ -10,9 +11,11 @@ const Accordeon = ({
   payload,
   initClosed = true,
   border = true,
+  type = "regular",
   widthScale
 }) => {
-  const [closed, setClosed] = useState(true);
+  const [closed, setClosed] = useState(initClosed);
+
   useEffect(() => {
     if (!initClosed) {
       setClosed(false);
@@ -24,18 +27,34 @@ const Accordeon = ({
       style={{ "--width-scale": widthScale }}
     >
       <div className="accordeon-header">
-        <p className="accordeon-title">{title}</p>
+        <div className="accordeon-icon-title-container">
+          {type === "warning" && <RedWarningSmall />}
+          <p
+            className="accordeon-title"
+            style={{
+              margin: closed ? "0" : "0 0 24px 0",
+              color: type === "warning" ? "rgba(255, 59, 48)" : "#171717"
+            }}
+          >
+            {title}
+          </p>
+        </div>
+
         {closed ? (
           <FontAwesomeIcon
             icon={faChevronDown}
-            style={{ cursor: "pointer" }}
+            className="accordeon-chevron"
+            style={{ margin: "0" }}
             onClick={() => setClosed(!closed)}
+            color={type === "warning" ? "rgba(255, 59, 48)" : "#171717"}
           />
         ) : (
           <FontAwesomeIcon
             icon={faChevronUp}
-            style={{ cursor: "pointer" }}
+            className="accordeon-chevron"
+            style={{ margin: "0 0 24px 0" }}
             onClick={() => setClosed(!closed)}
+            color={type === "warning" ? "rgba(255, 59, 48)" : "#171717"}
           />
         )}
       </div>
@@ -49,6 +68,7 @@ Accordeon.propTypes = {
   payload: PropTypes.object.isRequired,
   initClosed: PropTypes.bool,
   border: PropTypes.bool,
+  type: PropTypes.string,
   widthScale: PropTypes.number.isRequired
 };
 
