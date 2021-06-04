@@ -31,6 +31,27 @@ export const stepTutorialsCarousel = (cardIndex, steps, totalCards) => {
   };
 };
 
+const moveVideosSuccess = (delta) => {
+  return { type: actionTypes.MOVE_VIDEOS, delta };
+};
+
+export const moveVideos = (delta) => {
+  return (dispatch) => {
+    dispatch(moveVideosSuccess(delta));
+  };
+};
+
+const stepVideosCarouselSuccess = (index) => {
+  return { type: actionTypes.STEP_VIDEOS, index };
+};
+
+export const stepVideosCarousel = (cardIndex, steps, totalCards) => {
+  return (dispatch) => {
+    const index = calcIndexBySteps(cardIndex, steps, totalCards);
+    dispatch(stepVideosCarouselSuccess(index));
+  };
+};
+
 const calcIndexBySteps = (cardIndex, steps, totalCards) => {
   const index = cardIndex + steps;
   if (index < 0) {

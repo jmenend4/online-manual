@@ -85,13 +85,14 @@ export const getTutorials = () => {
               order: 3,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: [
-                "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
-                "https://www.youtube.com/watch?v=CvsNHBVggBM",
-                "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
-                "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
-                "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
-              ]
+              content: ["snowy.mp4", "snowy.mp4", "snowy.mp4"]
+              // content: [
+              //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
+              //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
+              //   "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
+              //   "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
+              //   "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
+              // ]
             },
             {
               order: 4,

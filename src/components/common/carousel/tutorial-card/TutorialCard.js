@@ -30,6 +30,8 @@ const TutorialCard = ({
     onCardClick(tutorials[cardIndex].id);
   };
 
+  console.log(leftPosition);
+
   return (
     <div
       className="tutorial-card"

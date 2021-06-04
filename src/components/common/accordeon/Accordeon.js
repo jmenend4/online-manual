@@ -12,7 +12,8 @@ const Accordeon = ({
   initClosed = true,
   border = true,
   type = "regular",
-  widthScale
+  widthScale,
+  height
 }) => {
   const [closed, setClosed] = useState(initClosed);
 
@@ -21,10 +22,14 @@ const Accordeon = ({
       setClosed(false);
     }
   }, []);
+
   return (
     <div
       className={border ? "accordeon" : ""}
-      style={{ "--width-scale": widthScale }}
+      style={{
+        "--width-scale": widthScale,
+        height: !closed && height ? height + "px" : "auto"
+      }}
     >
       <div className="accordeon-header">
         <div className="accordeon-icon-title-container">
@@ -65,11 +70,12 @@ const Accordeon = ({
 
 Accordeon.propTypes = {
   title: PropTypes.string.isRequired,
-  payload: PropTypes.object.isRequired,
+  payload: PropTypes.any.isRequired,
   initClosed: PropTypes.bool,
   border: PropTypes.bool,
   type: PropTypes.string,
-  widthScale: PropTypes.number.isRequired
+  widthScale: PropTypes.number.isRequired,
+  height: PropTypes.number
 };
 
 const mapStateToProps = (state) => {
