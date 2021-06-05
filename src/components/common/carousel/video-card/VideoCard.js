@@ -6,6 +6,8 @@ import {
   stepVideosCarousel
 } from "../../../../redux/actions/carouselActions";
 import { useCarouselCard } from "../../../../hooks/carouselHooks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import "./video-card.css";
 
 const VideoCard = ({
@@ -28,6 +30,8 @@ const VideoCard = ({
   );
   const [videoHeight, setVideoHeight] = useState(0);
   const [videoWidth, setVideoWidth] = useState(0);
+  const [canPlay, setCanPlay] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   const video = useRef(null);
 
@@ -41,17 +45,46 @@ const VideoCard = ({
     }
   };
 
+  const onCanPlayThrough = () => {
+    setCanPlay(true);
+  };
+
+  const onCardClick = () => {
+    if (video.current.paused) {
+      video.current.play();
+      // setPlaying(true);
+    } else {
+      video.current.pause();
+    }
+  };
+
+  const onPlay = () => {
+    setPlaying(true);
+  };
+
+  const onPause = () => {
+    setPlaying(false);
+  };
+
+  const onEnded = () => {
+    video.current.load();
+  };
+
   return (
     <>
       <video
         ref={video}
-        width={352 * widthScale}
-        height={videoHeight * widthScale}
+        width={videoWidth}
+        height={videoHeight}
         onLoadedMetadata={onLoadedMetadata}
-        onTouchStart={(e) => onMoveStart(e)}
-        onTouchMove={(e) => onMove(e)}
-        onTouchEnd={(e) => onMoveEnd(e)}
-        controls
+        onCanPlayThrough={onCanPlayThrough}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnded={onEnded}
+        // onTouchStart={(e) => onMoveStart(e)}
+        // onTouchMove={(e) => onMove(e)}
+        // onTouchEnd={(e) => onMoveEnd(e)}
+        // controls
         className="video-card"
         src={"../../../../assets/" + videos[cardIndex]}
         style={{
@@ -59,8 +92,8 @@ const VideoCard = ({
           "--width-scale": widthScale
         }}
       ></video>
-      {/* <div
-        className="video-card-controls"
+      <div
+        className={"video-card-controls" + (playing ? " playing" : "")}
         onTouchStart={(e) => onMoveStart(e)}
         onTouchMove={(e) => onMove(e)}
         onTouchEnd={(e) => onMoveEnd(e)}
@@ -69,7 +102,20 @@ const VideoCard = ({
           "--video-card-height": videoHeight + "px",
           "--video-card-width": videoWidth + "px"
         }}
-      ></div> */}
+        onClick={onCardClick}
+      >
+        {canPlay && !playing && (
+          <FontAwesomeIcon
+            icon={faPlayCircle}
+            style={{
+              color: "rgb(0, 122, 255)",
+              cursor: "pointer",
+              height: "73px",
+              width: "73px"
+            }}
+          />
+        )}
+      </div>
     </>
   );
 };
