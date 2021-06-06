@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Accordeon from "../components/common/accordeon/Accordeon";
+import RelatedComponentCard from "../components/common/carousel/related-component/RelatedComponentCard";
 import VideoCard from "../components/common/carousel/video-card/VideoCard";
 import Shield from "../components/common/icons/Shield";
 
@@ -49,6 +50,25 @@ const buildSections = (step) => {
             key={"_STEP_SECTION_" + i}
             title={section.title}
             payload={videos}
+            type={section.type}
+            // initClosed={false}
+            height={316}
+          />
+        );
+      }
+      case "related_features": {
+        const components = section.content.map((component, i) => (
+          <RelatedComponentCard
+            key={"__RELATED_COMPONENT__" + i}
+            cardIndex={i}
+            components={section.content}
+          />
+        ));
+        return (
+          <Accordeon
+            key={"_STEP_SECTION_" + i}
+            title={section.title}
+            payload={components}
             type={section.type}
             // initClosed={false}
             height={316}

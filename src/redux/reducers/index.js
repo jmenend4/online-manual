@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import featuresCarouselDelta from "./featuresCarouselReducer";
 import tutorialsCarousel from "./tutorialsCarouselReducer";
 import videosCarousel from "./videosCarouselReducer";
+import relatedComponentsCarousel from "./relatedComponentsCarouselReducer";
 import features from "./featuresReducer";
 import vehicle from "./vehicleReducer";
 import constants from "./constantsReducer";
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   featuresCarouselDelta,
   tutorialsCarousel,
   videosCarousel,
+  relatedComponentsCarousel,
   features,
   vehicle,
   constants,

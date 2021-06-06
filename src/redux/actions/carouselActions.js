@@ -52,6 +52,27 @@ export const stepVideosCarousel = (cardIndex, steps, totalCards) => {
   };
 };
 
+const moveRelatedComponentsSuccess = (delta) => {
+  return { type: actionTypes.MOVE_RELATED_COMPONENTS, delta };
+};
+
+export const moveRelatedComponents = (delta) => {
+  return (dispatch) => {
+    dispatch(moveRelatedComponentsSuccess(delta));
+  };
+};
+
+const stepRelatedComponentsCarouselSuccess = (index) => {
+  return { type: actionTypes.STEP_RELATED_COMPONENTS, index };
+};
+
+export const stepRelatedComponentsCarousel = (cardIndex, steps, totalCards) => {
+  return (dispatch) => {
+    const index = calcIndexBySteps(cardIndex, steps, totalCards);
+    dispatch(stepRelatedComponentsCarouselSuccess(index));
+  };
+};
+
 const calcIndexBySteps = (cardIndex, steps, totalCards) => {
   const index = cardIndex + steps;
   if (index < 0) {

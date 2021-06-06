@@ -98,7 +98,22 @@ export const getTutorials = () => {
               order: 4,
               type: "related_features",
               title: "Componentes relacionados",
-              content: []
+              content: [
+                {
+                  id: 1,
+                  name: "Palanca de cambios",
+                  system: "Sistema de transmisión",
+                  detectionCode: 1,
+                  icon: "gear_stick.png"
+                },
+                {
+                  id: 2,
+                  name: "Perilla de cambio de tracción",
+                  system: "Sistema de transmisión",
+                  detectionCode: 0,
+                  icon: "traction_switch.png"
+                }
+              ]
             }
           ]
         }

@@ -52,7 +52,6 @@ const VideoCard = ({
   const onCardClick = () => {
     if (video.current.paused) {
       video.current.play();
-      // setPlaying(true);
     } else {
       video.current.pause();
     }
