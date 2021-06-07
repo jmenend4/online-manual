@@ -42,15 +42,21 @@ export const getTutorials = () => {
               order: 1,
               type: "regular",
               title: "¿Qué aprenderás?",
-              content:
-                "En este tutorial aprenderás a manejar sobre terrenos nevados con tu Ford Ranger de manera correcta."
+              content: [
+                {
+                  text: "En este tutorial aprenderás a manejar sobre terrenos nevados con tu Ford Ranger de manera correcta."
+                }
+              ]
             },
             {
               order: 2,
               type: "regular",
               title: "Antes de empezar",
-              content:
-                "Tené cuidado, no dañes el paragolpes con piedras y escombros del terreno.<br><br>Considerá tener protección inferior para el motor, ruedas para offroad con su la presión correcta.<br><br>Localizá los puntos de remolque de tu vehículo. Te serán de utilidad ante cualquier eventualidad."
+              content: [
+                {
+                  text: "Tené cuidado, no dañes el paragolpes con piedras y escombros del terreno.<br><br>Considerá tener protección inferior para el motor, ruedas para offroad con su la presión correcta.<br><br>Localizá los puntos de remolque de tu vehículo. Te serán de utilidad ante cualquier eventualidad."
+                }
+              ]
             },
             {
               order: 3,
@@ -69,23 +75,94 @@ export const getTutorials = () => {
           sections: [
             {
               order: 1,
-              type: "with_icon",
+              type: "regular",
               title: "Consejos",
-              content:
-                "Te recomendamos tener activado el modo indicado para el terreno en que te encuentres antes de afrontar una situación complicada.",
-              icon: "shield"
+              content: [
+                {
+                  text: "Te recomendamos tener activado el modo indicado para el terreno en que te encuentres antes de afrontar una situación complicada.",
+                  icon: "shield"
+                }
+              ]
             },
             {
               order: 2,
               type: "warning",
               title: "Advertencias",
-              content: "Acá vá una advertencia"
+              content: [
+                {
+                  text: "Recuerde detener completamente el vehículo y mantener el pedal de freno presionado antes de pasar la palanca a la posición P"
+                }
+              ]
             },
             {
               order: 3,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: ["snowy.mp4", "snowy.mp4", "snowy.mp4"]
+              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
+              // content: [
+              //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
+              //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
+              //   "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
+              //   "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
+              //   "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
+              // ]
+            },
+            {
+              order: 4,
+              type: "related_features",
+              title: "Componentes relacionados",
+              content: [
+                {
+                  id: 1,
+                  name: "Perilla de cambio de tracción",
+                  system: "Sistema de transmisión",
+                  detectionCode: 0,
+                  icon: "traction_switch.png"
+                },
+                {
+                  id: 2,
+                  name: "Palanca de cambios",
+                  system: "Sistema de transmisión",
+                  detectionCode: 1,
+                  icon: "gear_stick.png"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          type: "step",
+          order: 2,
+          name: "Poné la palanca en P o N",
+          description: "El vehículo cambiará la transmisión",
+          image: "gear_stick.png",
+          sections: [
+            {
+              order: 1,
+              type: "regular",
+              title: "Consejos",
+              content: [
+                {
+                  text: "Te recomendamos tener activado este modo antes de comenzar a conducir sobre nieve suelta.",
+                  icon: "gear"
+                }
+              ]
+            },
+            {
+              order: 2,
+              type: "warning",
+              title: "Advertencias",
+              content: [
+                {
+                  text: "Hacer esta maniobra con el vehículo en movimiento puede no activar el mecanismo correctamente"
+                }
+              ]
+            },
+            {
+              order: 3,
+              type: "videos",
+              title: "Videos que te sugerimos",
+              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
               // content: [
               //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
               //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
@@ -114,6 +191,105 @@ export const getTutorials = () => {
                   icon: "traction_switch.png"
                 }
               ]
+            }
+          ]
+        },
+        {
+          type: "step",
+          order: 3,
+          name: "Mové la perilla e tracción a 4L",
+          description: "Verás luces indicadoras en el tablero",
+          image: "traction_switch.png",
+          sections: [
+            {
+              order: 1,
+              type: "regular",
+              title: "Consejos",
+              content: [
+                {
+                  text: "El modo 4x4 - Baja, obliga al motor a enviar 50% del torque al diferencial delantero mejorando la tracción significativamente",
+                  icon: "fourWheelDrive"
+                }
+              ]
+            },
+            {
+              order: 2,
+              type: "warning",
+              title: "Advertencias",
+              content: [
+                {
+                  text: "Hacer el cambio antes de estar manejando sobre la nieve.",
+                  icon: "pickUp"
+                },
+                {
+                  text: "Al vehículo le costará más realizar giros muy cerrados debido a que todas las ruedas giran a la misma velocidad en este modo.",
+                  icon: "handleWarning"
+                }
+              ]
+            },
+            {
+              order: 3,
+              type: "videos",
+              title: "Videos que te sugerimos",
+              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
+              // content: [
+              //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
+              //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
+              //   "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
+              //   "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
+              //   "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
+              // ]
+            },
+            {
+              order: 4,
+              type: "related_features",
+              title: "Componentes relacionados",
+              content: [
+                {
+                  id: 1,
+                  name: "Palanca de cambios",
+                  system: "Sistema de transmisión",
+                  detectionCode: 1,
+                  icon: "gear_stick.png"
+                },
+                {
+                  id: 2,
+                  name: "Perilla de cambio de tracción",
+                  system: "Sistema de transmisión",
+                  detectionCode: 0,
+                  icon: "traction_switch.png"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          type: "step",
+          order: 4,
+          name: "Estás listo para la aventura",
+          description: "Disfrutá de tu paseo off road",
+          image: "checkered_flag.png",
+          sections: [
+            {
+              order: 1,
+              type: "regular",
+              title: "Consejos",
+              content: [
+                {
+                  text: "Recordá estar siempre atento al camino y los alrededores.",
+                  icon: "cow"
+                },
+                {
+                  text: "Respetá siempre las velocidades máximas.",
+                  icon: "speedometer"
+                }
+              ]
+            },
+            {
+              order: 2,
+              type: "videos",
+              title: "Videos que te sugerimos",
+              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
             }
           ]
         }

@@ -9,6 +9,7 @@ import Stepper from "../common/stepper/Stepper";
 import NextStepButton from "../common/next-step/NextStepButton";
 import Accordeon from "../common/accordeon/Accordeon";
 import Shield from "../common/icons/Shield";
+import { image } from "@tensorflow/tfjs-core";
 
 const TutorialStep = ({
   tutorial,
@@ -27,6 +28,7 @@ const TutorialStep = ({
   const stepNameObserver = useRef(null);
   const stepper = useRef(null);
   const stepName = useRef(null);
+  const stepIndicator = useRef(null);
 
   useEffect(() => {
     createObservers();
@@ -67,6 +69,17 @@ const TutorialStep = ({
     setStepNameVisibleInCard(entries[0].isIntersecting);
   };
 
+  useEffect(() => {
+    const _stepImage = new Image();
+    _stepImage.src = `../../assets/${tutorial.steps[thisStep].image}`;
+    _stepImage.onload = () => {
+      const _width = (136 * _stepImage.width) / _stepImage.height;
+      _stepImage.style.width = Math.floor(_width) + "px";
+      _stepImage.style.height = "136px";
+      stepIndicator.current.after(_stepImage);
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -83,11 +96,14 @@ const TutorialStep = ({
           totalSteps={totalSteps}
           observer={stepperObserver.current}
         />
-        <p className="step-indicator">{"Paso " + thisStep}</p>
+        <p ref={stepIndicator} className="step-indicator">
+          {"Paso " + thisStep}
+        </p>
+        {/* // this is appended later once the image is loaded and its size calculated
         <img
           className="step-image"
           src={`../../assets/${tutorial.steps[thisStep].image}`}
-        />
+        /> */}
         <p ref={stepName} className="step-name">
           {tutorial.steps[thisStep].name}
         </p>

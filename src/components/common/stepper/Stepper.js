@@ -44,7 +44,7 @@ const Stepper = ({
         "--steper-width":
           (type === "in-card"
             ? totalSteps * 36 - 20
-            : totalSteps * 24 - 16
+            : totalSteps * 32 - 24
           ).toString() + "px"
       }}
     >

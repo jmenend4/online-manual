@@ -4,7 +4,6 @@ import * as tutorialsActions from "../../redux/actions/tutorialsActions";
 import * as vehicleActions from "../../redux/actions/vehicleActions";
 import PropTypes from "prop-types";
 import TutorialIntro from "./TutorialIntro";
-import Accordeon from "../common/accordeon/Accordeon";
 import TutorialStep from "./TutorialStep";
 
 const Tutorial = ({
@@ -42,6 +41,7 @@ const Tutorial = ({
       if (step.type === "intro") {
         _steps.push(
           <TutorialIntro
+            key={"__TUTORIAL_STEP_" + i}
             tutorial={tutorial}
             vehicle={vehicle}
             onBackClick={onBackClick}
@@ -51,6 +51,7 @@ const Tutorial = ({
       } else {
         _steps.push(
           <TutorialStep
+            key={"__TUTORIAL_STEP_" + i}
             tutorial={tutorial}
             thisStep={i}
             totalSteps={tutorial.steps.length - 1}

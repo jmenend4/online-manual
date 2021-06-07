@@ -75,6 +75,7 @@ const VideoCard = ({
         ref={video}
         width={videoWidth}
         height={videoHeight}
+        disablePictureInPicture
         onLoadedMetadata={onLoadedMetadata}
         onCanPlayThrough={onCanPlayThrough}
         onPlay={onPlay}
@@ -90,7 +91,9 @@ const VideoCard = ({
           "--left-position": leftPosition + "px",
           "--width-scale": widthScale
         }}
-      ></video>
+      >
+        Disculpe, su navegador no soporta este tipo de videos
+      </video>
       <div
         className={"video-card-controls" + (playing ? " playing" : "")}
         onTouchStart={(e) => onMoveStart(e)}

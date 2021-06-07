@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const RedWarningSmall = () => {
+const RedWarningSmall = ({ style = {} }) => {
   return (
     <svg
       width="24px"
@@ -8,7 +9,7 @@ const RedWarningSmall = () => {
       viewBox="0 0 24 25"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ marginTop: "1px", cursor: "default" }}
+      style={style}
     >
       <title>46988FB6-69A8-49B0-B09F-52D4F35BD0AE</title>
       <defs>
@@ -106,6 +107,10 @@ const RedWarningSmall = () => {
       </g>
     </svg>
   );
+};
+
+RedWarningSmall.propTypes = {
+  style: PropTypes.object
 };
 
 export default RedWarningSmall;

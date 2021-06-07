@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Shield = () => {
+const Shield = ({ style = {} }) => {
   return (
     <svg
       width="32px"
@@ -8,6 +9,7 @@ const Shield = () => {
       viewBox="0 0 32 33"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      style={style}
     >
       <title>F4CBFA72-A3F0-4454-B12D-15C07F28D85C</title>
       <defs>
@@ -118,6 +120,10 @@ const Shield = () => {
       </g>
     </svg>
   );
+};
+
+Shield.propTypes = {
+  style: PropTypes.object
 };
 
 export default Shield;

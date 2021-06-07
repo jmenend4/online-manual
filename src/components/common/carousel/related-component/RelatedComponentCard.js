@@ -41,7 +41,6 @@ const RelatedComponentCard = ({
     const _icon = new Image();
     _icon.src = "../../../../assets/" + components[cardIndex].icon;
     _icon.onload = () => {
-      console.log("hola");
       const _width = (96 * _icon.width) / _icon.height;
       _icon.style.width = Math.floor(_width) + "px";
       _icon.style.height = "96px";
