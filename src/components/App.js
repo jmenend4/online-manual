@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import FeaturesCarousel from "./features-carousel/FeaturesCarousel";
 import MainPage from "./main/MainPage";
 import Tutorial from "./tutorial/Tutorial";
 
