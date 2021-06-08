@@ -23,10 +23,7 @@ const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
         }}
       >
         <div className="your-vehicle-title">Tu Vehículo</div>
-        <img
-          className="your-vehicle-picture"
-          src={"../../../assets/" + vehicle.picture}
-        />
+        <img className="your-vehicle-picture" src={vehicle.picture} />
         <Accordeon
           title={vehicle.description === undefined ? "" : vehicle.description}
           payload={<YourVehicleFeatures />}

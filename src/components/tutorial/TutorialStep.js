@@ -7,9 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Stepper from "../common/stepper/Stepper";
 import NextStepButton from "../common/next-step/NextStepButton";
-import Accordeon from "../common/accordeon/Accordeon";
-import Shield from "../common/icons/Shield";
-import { image } from "@tensorflow/tfjs-core";
 
 const TutorialStep = ({
   tutorial,
@@ -61,11 +58,11 @@ const TutorialStep = ({
     stepNameObserver.current.observe(stepName.current);
   };
 
-  const observeStepper = (entries, _observer) => {
+  const observeStepper = (entries) => {
     setStepperVisibleInCard(entries[0].isIntersecting);
   };
 
-  const observeStepName = (entries, _observer) => {
+  const observeStepName = (entries) => {
     setStepNameVisibleInCard(entries[0].isIntersecting);
   };
 
@@ -99,11 +96,6 @@ const TutorialStep = ({
         <p ref={stepIndicator} className="step-indicator">
           {"Paso " + thisStep}
         </p>
-        {/* // this is appended later once the image is loaded and its size calculated
-        <img
-          className="step-image"
-          src={`../../assets/${tutorial.steps[thisStep].image}`}
-        /> */}
         <p ref={stepName} className="step-name">
           {tutorial.steps[thisStep].name}
         </p>

@@ -1,3 +1,8 @@
+import ranger from "../assets/ranger.png";
+import crewCabIcon from "../assets/crew-cab_feature.png";
+import FourByFourIcon from "../assets/traction_feature.png";
+import fuelIcon from "../assets/fuel_feature.png";
+
 export const getAllFeatures = () => {
   return Promise.resolve([
     { id: 1, name: "Component 1" },
@@ -18,10 +23,12 @@ export const getVehicle = () => {
   return Promise.resolve({
     id: "ABCD",
     description: "Ranger LIMITED 3.2L",
-    crewCab: true,
-    traction: "4X4",
-    fuel: "Diesel",
-    picture: "Daco_4190901.png"
+    picture: ranger,
+    features: [
+      { feature: "crewCab", type: "Cabina Doble", icon: crewCabIcon },
+      { feature: "traction", type: "4X4", icon: FourByFourIcon },
+      { feature: "fuel", type: "Diesel", icon: fuelIcon }
+    ]
   });
 };
 

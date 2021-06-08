@@ -1,57 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as vehicleActions from "../../redux/actions/vehicleActions";
 import PropTypes from "prop-types";
 import "./main.css";
 
 const YourVehicleFeatures = ({ vehicle, widthScale, getVehicle }) => {
+  const [features, setFeatures] = useState([]);
+
   useEffect(() => {
     if (vehicle.id === undefined) {
       getVehicle();
+    } else {
+      buildFeatures();
     }
   }, [vehicle]);
+
+  const buildFeatures = () => {
+    const _features = vehicle.features.map((feature, i) => (
+      <div
+        key={"__VEHICLE_FEATURE_" + i}
+        className="your-vehicle-feature-option"
+      >
+        <div className="your-vehicle-feature-icon">
+          <img src={feature.icon} />
+        </div>
+        <p className="your-vehicle-feature-value">{feature.type}</p>
+      </div>
+    ));
+    setFeatures(_features);
+  };
 
   return (
     <div
       className="your-vehicle-features-options"
       style={{ "--width-scale": widthScale }}
     >
-      <div className="your-vehicle-feature-option">
-        <div className="your-vehicle-feature-icon">
-          <img
-            src="../../assets/crew-cab_feature.png"
-            width="24px"
-            height="12px"
-          />
-        </div>
-        <p className="your-vehicle-feature-value">
-          {vehicle.id !== undefined
-            ? vehicle.crewCab
-              ? "Cabina Doble"
-              : "Cabina Simple"
-            : ""}
-        </p>
-      </div>
-      <div className="your-vehicle-feature-option">
-        <div className="your-vehicle-feature-icon">
-          <img
-            src="../../assets/traction_feature.png"
-            width="19px"
-            height="22px"
-          />
-        </div>
-        <p className="your-vehicle-feature-value">
-          {vehicle.traction !== undefined ? vehicle.traction : ""}
-        </p>
-      </div>
-      <div className="your-vehicle-feature-option">
-        <div className="your-vehicle-feature-icon">
-          <img src="../../assets/fuel_feature.png" width="24px" height="12px" />
-        </div>
-        <p className="your-vehicle-feature-value">
-          {vehicle.fuel !== undefined ? vehicle.fuel : ""}
-        </p>
-      </div>
+      {features}
     </div>
   );
 };

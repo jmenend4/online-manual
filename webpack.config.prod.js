@@ -3,7 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackBundleAnalyzer = require("webpack-bundle-analyzer");
-const CopyPlugin = require("copy-webpack-plugin");
+// const CopyPlugin = require("copy-webpack-plugin");
 // const WorkboxPlugin = require("workbox-webpack-plugin");
 
 process.env.NODE_ENV = "production";
@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "bundle.[contenthash].js"
   },
   plugins: [
     new webpackBundleAnalyzer.BundleAnalyzerPlugin({ analyzerMode: "static" }),
@@ -42,8 +42,8 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
-    }),
-    new CopyPlugin([{ from: "src/assets", to: "assets" }])
+    })
+    // new CopyPlugin([{ from: "src/assets", to: "assets" }])
   ],
   module: {
     rules: [
@@ -65,7 +65,7 @@ module.exports = {
           {
             loader: "postcss-loader",
             options: {
-              plugins: () => [require("cssnano")],
+              postcssOptions: { plugins: () => [require("cssnano")] },
               sourceMap: true
             }
           }
@@ -73,16 +73,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|jfif|png|gif|woff|woff2|eot|ttf|svg|mp4)(\?[a-z0-9=.]+)?$/,
-        use: "url-loader?limit=100000"
-      },
-      {
-        test: /\.wasm$/i,
-        type: "javascript/auto",
-        use: [
-          {
-            loader: "file-loader"
-          }
-        ]
+        type: "asset/resource"
       }
     ]
   }
