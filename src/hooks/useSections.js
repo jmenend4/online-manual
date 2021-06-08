@@ -38,7 +38,6 @@ const buildSections = (step) => {
             title={section.title}
             payload={videos}
             type={section.type}
-            // initClosed={false}
             height={316}
           />
         );
@@ -57,7 +56,6 @@ const buildSections = (step) => {
             title={section.title}
             payload={components}
             type={section.type}
-            // initClosed={false}
             height={316}
           />
         );

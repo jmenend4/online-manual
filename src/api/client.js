@@ -2,6 +2,14 @@ import ranger from "../assets/ranger.png";
 import crewCabIcon from "../assets/crew-cab_feature.png";
 import FourByFourIcon from "../assets/traction_feature.png";
 import fuelIcon from "../assets/fuel_feature.png";
+import snowyRanger from "../assets/snowy-ranger.jpg";
+import sandyRanger from "../assets/sandy-ranger.jpg";
+import car from "../assets/car.png";
+import tractionSwitch from "../assets/traction_switch.png";
+import gearStick from "../assets/gear_stick.png";
+import snowDriving from "../assets/snowy.mp4";
+import snowChains from "../assets/snow-chains.mp4";
+import secureLoad from "../assets/secure-load.mp4";
 
 export const getAllFeatures = () => {
   return Promise.resolve([
@@ -39,7 +47,7 @@ export const getTutorials = () => {
       name: "¿Cómo manejar sobre nieve?",
       description:
         "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre nieve",
-      picture: "snowy-ranger.jpg",
+      picture: snowyRanger,
       steps: [
         {
           type: "intro",
@@ -69,7 +77,22 @@ export const getTutorials = () => {
               order: 3,
               type: "related_features",
               title: "Componentes relacionados",
-              content: []
+              content: [
+                {
+                  id: 1,
+                  name: "Perilla de cambio de tracción",
+                  system: "Sistema de transmisión",
+                  detectionCode: 0,
+                  icon: tractionSwitch
+                },
+                {
+                  id: 2,
+                  name: "Palanca de cambios",
+                  system: "Sistema de transmisión",
+                  detectionCode: 1,
+                  icon: gearStick
+                }
+              ]
             }
           ]
         },
@@ -78,7 +101,7 @@ export const getTutorials = () => {
           order: 1,
           name: "Frená tu vehículo",
           description: "Para cambiar de 2h a 4L el vehículo debe estar quieto",
-          image: "car.png",
+          image: car,
           sections: [
             {
               order: 1,
@@ -105,7 +128,7 @@ export const getTutorials = () => {
               order: 3,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
+              content: [snowDriving, snowChains, secureLoad]
               // content: [
               //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
               //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
@@ -124,14 +147,14 @@ export const getTutorials = () => {
                   name: "Perilla de cambio de tracción",
                   system: "Sistema de transmisión",
                   detectionCode: 0,
-                  icon: "traction_switch.png"
+                  icon: tractionSwitch
                 },
                 {
                   id: 2,
                   name: "Palanca de cambios",
                   system: "Sistema de transmisión",
                   detectionCode: 1,
-                  icon: "gear_stick.png"
+                  icon: gearStick
                 }
               ]
             }
@@ -169,14 +192,7 @@ export const getTutorials = () => {
               order: 3,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
-              // content: [
-              //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
-              //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
-              //   "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
-              //   "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
-              //   "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
-              // ]
+              content: [snowDriving, snowChains, secureLoad]
             },
             {
               order: 4,
@@ -188,14 +204,14 @@ export const getTutorials = () => {
                   name: "Palanca de cambios",
                   system: "Sistema de transmisión",
                   detectionCode: 1,
-                  icon: "gear_stick.png"
+                  icon: gearStick
                 },
                 {
                   id: 2,
                   name: "Perilla de cambio de tracción",
                   system: "Sistema de transmisión",
                   detectionCode: 0,
-                  icon: "traction_switch.png"
+                  icon: tractionSwitch
                 }
               ]
             }
@@ -238,14 +254,7 @@ export const getTutorials = () => {
               order: 3,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
-              // content: [
-              //   "https://www.youtube.com/watch?v=kXQ1Uo7Qhzk",
-              //   "https://www.youtube.com/watch?v=CvsNHBVggBM",
-              //   "https://www.youtube.com/watch?v=W9mGkcLyaiM&t=27s",
-              //   "https://www.youtube.com/watch?v=6WaQUa6ZDBo&t=70s",
-              //   "https://www.youtube.com/watch?v=A94wOxIUpLM&t=582s"
-              // ]
+              content: [snowDriving, snowChains, secureLoad]
             },
             {
               order: 4,
@@ -254,17 +263,17 @@ export const getTutorials = () => {
               content: [
                 {
                   id: 1,
-                  name: "Palanca de cambios",
-                  system: "Sistema de transmisión",
-                  detectionCode: 1,
-                  icon: "gear_stick.png"
-                },
-                {
-                  id: 2,
                   name: "Perilla de cambio de tracción",
                   system: "Sistema de transmisión",
                   detectionCode: 0,
-                  icon: "traction_switch.png"
+                  icon: tractionSwitch
+                },
+                {
+                  id: 2,
+                  name: "Palanca de cambios",
+                  system: "Sistema de transmisión",
+                  detectionCode: 1,
+                  icon: gearStick
                 }
               ]
             }
@@ -296,7 +305,7 @@ export const getTutorials = () => {
               order: 2,
               type: "videos",
               title: "Videos que te sugerimos",
-              content: ["snowy.mp4", "snow-chains.mp4", "secure-load.mp4"]
+              content: [snowDriving, snowChains, secureLoad]
             }
           ]
         }
@@ -307,7 +316,7 @@ export const getTutorials = () => {
       name: "¿Cómo manejar sobre arena?",
       description:
         "Aprendé todo lo que tu RANGER puede hacer por vos en aventuras sobre arena",
-      picture: "sandy-ranger.jpg"
+      picture: sandyRanger
     }
   ]);
 };

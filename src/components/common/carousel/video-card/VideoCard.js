@@ -86,7 +86,7 @@ const VideoCard = ({
         // onTouchEnd={(e) => onMoveEnd(e)}
         // controls
         className="video-card"
-        src={"../../../../assets/" + videos[cardIndex]}
+        src={videos[cardIndex]}
         style={{
           "--left-position": leftPosition + "px",
           "--width-scale": widthScale

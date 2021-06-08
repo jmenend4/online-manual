@@ -38,7 +38,7 @@ const TutorialCard = ({
       onTouchEnd={(e) => onMoveEnd(e)}
       onClick={(e) => onClick(e)}
       style={{
-        backgroundImage: `url(../../assets/${tutorials[cardIndex].picture})`,
+        backgroundImage: `url(${tutorials[cardIndex].picture})`,
         backgroundSize: "cover",
         "--left-position": leftPosition + "px",
         "--width-scale": widthScale
