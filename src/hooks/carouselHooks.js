@@ -32,6 +32,7 @@ export const useCarouselCard = (
   };
 
   const onMove = (e) => {
+    // e.preventDefault();
     e.stopPropagation();
     moveCarousel(e.touches[0].pageX - startX.current);
   };

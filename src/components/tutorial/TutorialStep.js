@@ -68,7 +68,7 @@ const TutorialStep = ({
 
   useEffect(() => {
     const _stepImage = new Image();
-    _stepImage.src = `../../assets/${tutorial.steps[thisStep].image}`;
+    _stepImage.src = tutorial.steps[thisStep].image;
     _stepImage.onload = () => {
       const _width = (136 * _stepImage.width) / _stepImage.height;
       _stepImage.style.width = Math.floor(_width) + "px";

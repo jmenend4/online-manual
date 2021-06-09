@@ -1,10 +1,8 @@
 .tutorial-title {
   position: relative;
-  height: 128px;
   width: calc(var(--width-scale) * 414px);
   border-radius: 8px;
-  padding-left: 64px;
-  padding-top: 48px;
+  padding: 48px 16px 32px 64px;
   background: linear-gradient(
     315.08deg,
     rgba(90, 200, 250, 1) 0%,
@@ -26,8 +24,6 @@
 }
 
 .tutorial-title > .tutorial-name {
-  display: inline;
-  height: 24px;
   color: rgba(255, 255, 255, 1);
   font-family: "SF Pro Display", sans-serif;
   font-size: 22px;
@@ -36,6 +32,8 @@
   line-height: 24px;
   margin: 0;
   overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
   cursor: default;
 }
 
@@ -43,7 +41,7 @@
   height: 24px;
   width: 158px;
   color: rgba(255, 255, 255, 1);
-  font-family: "SF Pro Text";
+  font-family: "SF Pro Text", sans-serif;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: -0.39px;
@@ -79,7 +77,7 @@
 .tutorial-step-header > .tutorial-step-title {
   height: 24px;
   color: rgb(0, 122, 255);
-  font-family: "SF Pro Display";
+  font-family: "SF Pro Display", sans-serif;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.38px;
@@ -136,7 +134,7 @@
   align-items: center;
   width: calc(var(--width-scale) * 398px);
   border-radius: 8px;
-  padding: 16px 80px 32px 80px;
+  padding: 16px 16px 32px 16px;
   margin: 16px 8px 32px 8px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
@@ -155,7 +153,6 @@
 }
 
 .tutorial-step-card > .step-name {
-  height: 24px;
   color: rgb(0, 122, 255);
   font-family: "SF Pro Display", sans-serif;
   font-size: 20px;
@@ -169,9 +166,8 @@
 }
 
 .tutorial-step-card > .step-description {
-  height: 48px;
   color: rgb(102, 102, 102);
-  font-family: "SF Pro Text";
+  font-family: "SF Pro Text", sans-serif;
   font-size: 16px;
   letter-spacing: -0.39px;
   line-height: 24px;

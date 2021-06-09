@@ -10,7 +10,7 @@
     "prebuild": "run-p clean:build",
     "build": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p serve:build",
-    "serve:build": "http-server ./build"
+    "serve:build": "http-server ./build --proxy http://localhost:8080? -c -1"
   },
   "jest": {
     "setupFiles": [

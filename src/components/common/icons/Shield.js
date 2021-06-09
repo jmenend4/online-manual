@@ -9,6 +9,7 @@ const Shield = ({ style = {} }) => {
       viewBox="0 0 32 33"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       style={style}
     >
       <title>F4CBFA72-A3F0-4454-B12D-15C07F28D85C</title>

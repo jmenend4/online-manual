@@ -7,6 +7,7 @@ import sandyRanger from "../assets/sandy-ranger.jpg";
 import car from "../assets/car.png";
 import tractionSwitch from "../assets/traction_switch.png";
 import gearStick from "../assets/gear_stick.png";
+import flag from "../assets/checkered_flag.png";
 import snowDriving from "../assets/snowy.mp4";
 import snowChains from "../assets/snow-chains.mp4";
 import secureLoad from "../assets/secure-load.mp4";
@@ -165,7 +166,7 @@ export const getTutorials = () => {
           order: 2,
           name: "Poné la palanca en P o N",
           description: "El vehículo cambiará la transmisión",
-          image: "gear_stick.png",
+          image: gearStick,
           sections: [
             {
               order: 1,
@@ -220,9 +221,9 @@ export const getTutorials = () => {
         {
           type: "step",
           order: 3,
-          name: "Mové la perilla e tracción a 4L",
+          name: "Mové la perilla de tracción a 4L",
           description: "Verás luces indicadoras en el tablero",
-          image: "traction_switch.png",
+          image: tractionSwitch,
           sections: [
             {
               order: 1,
@@ -284,7 +285,7 @@ export const getTutorials = () => {
           order: 4,
           name: "Estás listo para la aventura",
           description: "Disfrutá de tu paseo off road",
-          image: "checkered_flag.png",
+          image: flag,
           sections: [
             {
               order: 1,

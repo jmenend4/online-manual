@@ -8,6 +8,10 @@ import { Provider as ReduxProvider } from "react-redux";
 
 const store = configureStore();
 
+// screen.orientation.lock();
+// screen.lockOrientation("portrait");
+// does not work on safari over ios. it prevents de page to load completely
+
 render(
   <ReduxProvider store={store}>
     <Router>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useCarouselCard } from "../../../../hooks/carouselHooks";
@@ -25,6 +25,13 @@ const TutorialCard = ({
     tutorials.length
   );
 
+  // const card = useRef(null);
+
+  // useEffect(() => {
+  //   card.current.addEventListener("touchmove", onMove, { passive: false });
+  //   return () => card.current.removeEventListener("touchmove", onMove);
+  // }, [onMove]);
+
   const onClick = (e) => {
     e.stopPropagation();
     onCardClick(tutorials[cardIndex].id);
@@ -32,6 +39,7 @@ const TutorialCard = ({
 
   return (
     <div
+      // ref={card}
       className="tutorial-card"
       onTouchStart={(e) => onMoveStart(e)}
       onTouchMove={(e) => onMove(e)}

@@ -77,13 +77,11 @@ const VideoCard = ({
         height={videoHeight}
         disablePictureInPicture
         onLoadedMetadata={onLoadedMetadata}
+        onLoad={onEnded}
         onCanPlayThrough={onCanPlayThrough}
         onPlay={onPlay}
         onPause={onPause}
         onEnded={onEnded}
-        // onTouchStart={(e) => onMoveStart(e)}
-        // onTouchMove={(e) => onMove(e)}
-        // onTouchEnd={(e) => onMoveEnd(e)}
         // controls
         className="video-card"
         src={videos[cardIndex]}

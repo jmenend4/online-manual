@@ -43,7 +43,6 @@ const Tutorial = ({
           <TutorialIntro
             key={"__TUTORIAL_STEP_" + i}
             tutorial={tutorial}
-            vehicle={vehicle}
             onBackClick={onBackClick}
             onInitClick={onFowardClick}
           />
