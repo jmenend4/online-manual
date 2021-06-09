@@ -15,7 +15,7 @@ module.exports = {
   entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "/",
+    publicPath: "./",
     filename: "bundle.[contenthash].js"
   },
   plugins: [
@@ -28,7 +28,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      favicon: "src/favicon.ico",
       minify: {
         // see https://github.com/kangax/html-minifier#options-quick-reference
         removeComments: true,

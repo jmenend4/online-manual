@@ -11,7 +11,7 @@ module.exports = {
   entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "/",
+    publicPath: "./",
     filename: "bundle.[contenthash].js"
   },
   devServer: {
@@ -28,8 +28,7 @@ module.exports = {
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     }),
     new HtmlWebpackPlugin({
-      template: "src/index.html",
-      favicon: "src/favicon.ico"
+      template: "src/index.html"
     })
   ],
   module: {
