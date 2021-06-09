@@ -1,0 +1,27 @@
+.video-card {
+  position: absolute;
+  left: var(--left-position);
+  border-radius: 8px;
+  background: linear-gradient(
+    315.08deg,
+    rgba(90, 200, 250, 1) 0%,
+    rgba(0, 122, 255, 1) 100%
+  );
+  box-shadow: 0 8px 16px 8px rgba(23, 23, 23, 0.1);
+}
+
+.video-card-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: var(--video-card-height);
+  width: var(--video-card-width);
+  left: var(--left-position);
+  background-color: rgba(255, 255, 255);
+  opacity: 0.5;
+}
+
+.video-card-controls.playing {
+  opacity: 0;
+}

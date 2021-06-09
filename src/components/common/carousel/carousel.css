@@ -1,0 +1,24 @@
+.carousel-paginator {
+  position: relative;
+  top: 0px;
+  left: var(--left);
+  height: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.current-page {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: rgba(0, 122, 255, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 122, 255, 0.2);
+}
+
+.other-page {
+  height: 4px;
+  width: 8px;
+  border-radius: 4px;
+  background-color: rgb(200, 199, 204);
+}
