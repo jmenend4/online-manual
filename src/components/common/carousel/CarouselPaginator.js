@@ -35,7 +35,7 @@ const CarouselPaginator = ({
       _dots.push(dot);
     });
     setDots(_dots);
-    setWidth(cards.length * 16 + 8);
+    setWidth(cards.length * 16 - 8);
   }, [index, cards.length]);
 
   return (

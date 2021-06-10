@@ -29,15 +29,17 @@ const TutorialsCard = ({ tutorials, widthScale, getTutorials, history }) => {
     history.push("/tutorials/" + tutorialId);
   };
 
+  console.log(widthScale + "holahola");
+
   return (
-    <div className="card" style={{ height: 344 * widthScale + "px" }}>
+    <div className="card" style={{ height: 160 + 184 * widthScale + "px" }}>
       <p className="tutorials-title">Tutoriales Relacionados</p>
       {cards}
       <CarouselPaginator
         cardType="tutorial"
         cards={cards}
-        cardWidth={342}
-        cardHeight={184}
+        cardWidth={342 * widthScale}
+        cardHeight={184 * widthScale}
       />
     </div>
   );

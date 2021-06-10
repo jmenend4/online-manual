@@ -11,7 +11,7 @@ module.exports = {
   entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "./",
+    publicPath: "/",
     filename: "bundle.[contenthash].js"
   },
   devServer: {
