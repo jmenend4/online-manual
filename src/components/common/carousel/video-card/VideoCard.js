@@ -76,6 +76,7 @@ const VideoCard = ({
         width={videoWidth}
         height={videoHeight}
         disablePictureInPicture
+        playsInline
         onLoadedMetadata={onLoadedMetadata}
         onLoad={onEnded}
         onCanPlayThrough={onCanPlayThrough}
@@ -84,7 +85,7 @@ const VideoCard = ({
         onEnded={onEnded}
         // controls
         className="video-card"
-        src={videos[cardIndex]}
+        src={videos[cardIndex] + "#t=0.001"}
         style={{
           "--left-position": leftPosition + "px",
           "--width-scale": widthScale
