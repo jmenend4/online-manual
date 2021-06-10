@@ -8,7 +8,9 @@ const NavBar = ({ history }) => {
   const navHome = (e) => {
     history.push("/");
   };
-  const navCameraView = () => {};
+  const navCameraView = () => {
+    history.push("/detector");
+  };
   const search = () => {};
   return (
     <>

@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 process.env.NODE_ENV = "development";
 
@@ -29,7 +30,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html"
-    })
+    }),
+    new CopyPlugin({ patterns: [{ from: "src/model", to: "model" }] })
   ],
   module: {
     rules: [
