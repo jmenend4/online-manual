@@ -13,6 +13,7 @@ export const useCarouselCard = (
 ) => {
   const [leftPosition, setLeftPosition] = useState(0);
   const startX = useRef(null);
+  const touchStartTime = useRef(null);
 
   useEffect(() => {
     setLeftPosition(calcLeftPosition());
@@ -28,6 +29,7 @@ export const useCarouselCard = (
 
   const onMoveStart = (e) => {
     e.stopPropagation();
+    touchStartTime.current = new Date();
     startX.current = e.touches[0].pageX;
   };
 
@@ -38,7 +40,11 @@ export const useCarouselCard = (
   };
 
   const onMoveEnd = () => {
-    const steps = -Math.round(delta / cardWidth);
+    const currentTime = new Date();
+    const flick =
+      currentTime - touchStartTime.current < 500 ? -Math.sign(delta) : 0;
+    touchStartTime.current = null;
+    const steps = flick - Math.round(delta / cardWidth);
     stepCarousel(cardIndex, steps, totalCards);
     moveCarousel(0);
   };
