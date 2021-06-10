@@ -18,41 +18,45 @@
   width: calc(var(--width-scale) * 342px);
   border-radius: 8px;
   box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+  overflow: hidden;
 }
 
 .tutorial-card > .tutorial-card-mask {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
+  left: -2;
 }
 
 .tutorial-card > .tutorial-name {
   position: absolute;
   left: 16px;
   bottom: 56px;
-  height: 24px;
+  height: calc(var(--width-scale) * 24px);
   width: calc(var(--width-scale) * 310px);
   color: #ffffff;
   font-family: "SF Pro Display Bold", sans-serif;
-  font-size: 20px;
+  font-size: calc(var(--width-scale) * 20px);
   font-weight: bold;
   letter-spacing: 0.38px;
-  line-height: 24px;
+  line-height: calc(var(--width-scale) * 24px);
   margin: 0;
   overflow: hidden;
   cursor: default;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .tutorial-card > .tutorial-description {
   position: absolute;
   left: 16px;
   bottom: 16px;
-  height: 32px;
+  height: calc(var(--width-scale) * 32px);
   width: calc(var(--width-scale) * 250px);
   color: #ffffff;
   font-family: "SF Pro Text Regular", sans-serif;
-  font-size: 12px;
+  font-size: calc(var(--width-scale) * 12px);
   letter-spacing: -0.29px;
-  line-height: 16px;
+  line-height: calc(var(--width-scale) * 16px);
   margin: 0;
   overflow: hidden;
   cursor: default;
@@ -596,6 +600,18 @@ html {
   touch-action: pan-y;
 }
 
+/* @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+} */
+
 body {
   height: 100%;
   width: 100%;
@@ -611,4 +627,4 @@ body {
 }
 
 
-/*# sourceMappingURL=main.9cc36312d86afbcc2e14.css.map*/
+/*# sourceMappingURL=main.2588ad410c06ac05c9f5.css.map*/
