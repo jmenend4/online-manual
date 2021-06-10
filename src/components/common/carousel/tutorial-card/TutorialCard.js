@@ -56,7 +56,7 @@ const TutorialCard = ({
         className="tutorial-card-mask"
         xmlns="http://www.w3.org/2000/svg"
         height={138 * widthScale}
-        width={342 * widthScale}
+        width={344 * widthScale}
       >
         <linearGradient
           id="tutorialCardMaskGradient"

@@ -5,41 +5,45 @@
   width: calc(var(--width-scale) * 342px);
   border-radius: 8px;
   box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+  overflow: hidden;
 }
 
 .tutorial-card > .tutorial-card-mask {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
+  left: -1px;
 }
 
 .tutorial-card > .tutorial-name {
   position: absolute;
   left: 16px;
   bottom: 56px;
-  height: 24px;
+  height: calc(var(--width-scale) * 24px);
   width: calc(var(--width-scale) * 310px);
   color: #ffffff;
   font-family: "SF Pro Display Bold", sans-serif;
-  font-size: 20px;
+  font-size: calc(var(--width-scale) * 20px);
   font-weight: bold;
   letter-spacing: 0.38px;
-  line-height: 24px;
+  line-height: calc(var(--width-scale) * 24px);
   margin: 0;
   overflow: hidden;
   cursor: default;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .tutorial-card > .tutorial-description {
   position: absolute;
   left: 16px;
   bottom: 16px;
-  height: 32px;
+  height: calc(var(--width-scale) * 32px);
   width: calc(var(--width-scale) * 250px);
   color: #ffffff;
   font-family: "SF Pro Text Regular", sans-serif;
-  font-size: 12px;
+  font-size: calc(var(--width-scale) * 12px);
   letter-spacing: -0.29px;
-  line-height: 16px;
+  line-height: calc(var(--width-scale) * 16px);
   margin: 0;
   overflow: hidden;
   cursor: default;
