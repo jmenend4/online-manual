@@ -10,8 +10,8 @@
 
 .tutorial-card > .tutorial-card-mask {
   position: absolute;
-  bottom: -1px;
-  left: -1px;
+  bottom: -2px;
+  left: -2;
 }
 
 .tutorial-card > .tutorial-name {

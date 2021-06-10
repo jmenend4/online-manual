@@ -29,8 +29,6 @@ const TutorialsCard = ({ tutorials, widthScale, getTutorials, history }) => {
     history.push("/tutorials/" + tutorialId);
   };
 
-  console.log(widthScale + "holahola");
-
   return (
     <div className="card" style={{ height: 160 + 184 * widthScale + "px" }}>
       <p className="tutorials-title">Tutoriales Relacionados</p>

@@ -55,8 +55,8 @@ const TutorialCard = ({
       <svg
         className="tutorial-card-mask"
         xmlns="http://www.w3.org/2000/svg"
-        height={138 * widthScale}
-        width={344 * widthScale}
+        height={142 * widthScale}
+        width={346 * widthScale}
       >
         <linearGradient
           id="tutorialCardMaskGradient"
@@ -69,9 +69,9 @@ const TutorialCard = ({
           <stop offset="1" stopColor="#5ac8fa" />
         </linearGradient>
         <polygon
-          points={`0,0 ${342 * widthScale},${46 * widthScale} ${
-            342 * widthScale
-          },${138 * widthScale} 0, ${138 * widthScale}`}
+          points={`0,0 ${346 * widthScale},${48 * widthScale} ${
+            346 * widthScale
+          },${142 * widthScale} 0, ${142 * widthScale}`}
           fill="url('#tutorialCardMaskGradient')"
         />
       </svg>
