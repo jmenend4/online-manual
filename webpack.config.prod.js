@@ -3,7 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackBundleAnalyzer = require("webpack-bundle-analyzer");
-// const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 // const WorkboxPlugin = require("workbox-webpack-plugin");
 
 process.env.NODE_ENV = "production";
@@ -41,8 +41,10 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "src/components/detector/model", to: "model" }]
     })
-    // new CopyPlugin([{ from: "src/assets", to: "assets" }])
   ],
   module: {
     rules: [

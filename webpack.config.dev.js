@@ -31,7 +31,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/index.html"
     }),
-    new CopyPlugin({ patterns: [{ from: "src/model", to: "model" }] })
+    new CopyPlugin({
+      patterns: [{ from: "src/components/detector/model", to: "model" }]
+    })
   ],
   module: {
     rules: [
@@ -45,7 +47,7 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(jpe?g|jfif|png|gif|woff|woff2|eot|ttf|svg|mp4)(\?[a-z0-9=.]+)?$/,
+        test: /\.(jpe?g|jfif|png|gif|woff|woff2|eot|ttf|svg|mp4|avi)(\?[a-z0-9=.]+)?$/,
         type: "asset/resource"
       }
     ]

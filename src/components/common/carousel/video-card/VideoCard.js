@@ -75,7 +75,7 @@ const VideoCard = ({
         ref={video}
         width={videoWidth}
         height={videoHeight}
-        disablePictureInPicture
+        disablepictureinpicture="true"
         playsInline
         onLoadedMetadata={onLoadedMetadata}
         onLoad={onEnded}
