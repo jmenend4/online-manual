@@ -9,7 +9,6 @@ class App extends React.Component {
   state = { errorMessage: null };
 
   componentDidCatch(error, info) {
-    console.log("hola");
     this.setState({ errorMessage: error.message });
   }
 

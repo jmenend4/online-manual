@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { useAsyncError } from "../../hooks/asyncError";
 import * as tf from "@tensorflow/tfjs";
 import { useDemoVideo } from "./demoFrames";
+import NextStepButton from "../common/next-step/NextStepButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 // import testImgSrc from "../../assets/Archivo_043.jpeg";
 import testImgSrc from "../../assets/demo_frames/frame_video4_0.jpg";
 import "./detector.css";
+import { set } from "immer/dist/internal";
 
-const Detector = () => {
+const Detector = ({ widthScale, history }) => {
   const classes = 5;
   const frameRate = 42; // equivalent to 24 fps
   const fps = 24;
@@ -16,13 +22,16 @@ const Detector = () => {
   const demoVideo = useRef(null);
   const [model, setModel] = useState(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [readyToDetect, setReadyToDetect] = useState(false);
+  const [detect, setDetect] = useState(false);
   const detectionBuffer = useRef([]);
   const canvas = useRef(null);
   const ctx = useRef(null);
   const throwError = useAsyncError();
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
   const getDemoVideo = useDemoVideo();
   const [detections, setDetections] = useState([null, null, null, null, null]);
+  const [selectedDetection, setSelectedDetection] = useState(null);
 
   useEffect(() => {
     if (model === null) {
@@ -84,7 +93,7 @@ const Detector = () => {
     let detectionIntervalId;
     let bufferingGapTimeoutId;
     let videoBufferConsumeIntervalId;
-    if (model && videoLoaded) {
+    if (model && videoLoaded && readyToDetect && detect) {
       detectionIntervalId = detectionloop();
       bufferingGapTimeoutId = setTimeout(() => {
         videoBufferConsumeIntervalId = videoBufferConsumeLoop();
@@ -101,7 +110,7 @@ const Detector = () => {
         clearTimeout(videoBufferConsumeIntervalId);
       }
     };
-  }, [model, videoLoaded]);
+  }, [model, videoLoaded, readyToDetect, detect]);
 
   const detectionloop = () => {
     const indexGen = bufferIndexGen(demoVideo.current.length);
@@ -150,9 +159,9 @@ const Detector = () => {
         <div
           key={key}
           id={key}
-          className="detection"
+          className="detection detection-position"
           style={{
-            display: box[3] === 0 ? "none" : "block",
+            display: box[3] === 0 ? "none" : "flex",
             "--top": box[0],
             "--left": box[1],
             "--height": box[2],
@@ -162,10 +171,44 @@ const Detector = () => {
             "--next_height": box[2],
             "--next_width": box[3]
           }}
-        ></div>
+          onClick={(e) => {
+            e.stopPropagation();
+            detectionClicked(cls);
+          }}
+        >
+          <div className="plus-sign">+</div>
+        </div>
       );
     });
     setDetections(_detections);
+  };
+
+  const detectionClicked = (cls) => {
+    switch (cls) {
+      case 0: {
+        setSelectedDetection("Perilla de cambio de tracción");
+        break;
+      }
+      case 1: {
+        setSelectedDetection("Botones de control de tracción");
+        break;
+      }
+      case 2: {
+        setSelectedDetection("Control de tracción");
+        break;
+      }
+      case 3: {
+        setSelectedDetection("Bloqueo de diferencial");
+        break;
+      }
+      case 4: {
+        setSelectedDetection("Control de descenso");
+        break;
+      }
+      default: {
+        setSelectedDetection(null);
+      }
+    }
   };
 
   function* bufferIndexGen(maxIndex) {
@@ -189,7 +232,8 @@ const Detector = () => {
     const dps = Math.floor(1 / (acc / 20000));
     detectionFramesToWait.current = Math.ceil(fps / dps);
     console.log("Detections per second = " + dps);
-    setMessage("Detections per second = " + dps);
+    setMessage("Tu equipo puede realizar " + dps + " detecciones por segundo.");
+    setReadyToDetect(true);
     console.log(
       "Frames to wait for detection = " + detectionFramesToWait.current
     );
@@ -197,23 +241,74 @@ const Detector = () => {
 
   return (
     <>
+      {!readyToDetect && !detect && (
+        <div className="preparing">
+          <h1 className="preparing-message">Preparando para detectar</h1>{" "}
+          <h2 className="wait">Aguardá un instante por favor</h2>
+        </div>
+      )}
+      {readyToDetect && !detect && (
+        <div className="preparing">
+          <h1 className="preparing-message">
+            Listo! <br></br> Tocá la detección para obtener más información
+            sobre el componente
+          </h1>
+          <div className="detection" style={{ margin: "16px 24px 32px 24px" }}>
+            <div className="plus-sign">+</div>
+          </div>
+          <h2 className="wait">{message}</h2>
+          <NextStepButton
+            legend="INICIAR DETECCIÓN"
+            onNextClick={() => {
+              // setMessage("holahola");
+              setDetect(true);
+            }}
+          />
+        </div>
+      )}
       <canvas
         ref={canvas}
         style={{ position: "absolute", top: "0px", left: "0px" }}
+        onClick={(e) => {
+          e.stopPropagation();
+          detectionClicked(-1);
+        }}
       ></canvas>
-      <p
+      {readyToDetect && detect && <> {detections} </>}
+      <div
+        className="detector-header"
         style={{
-          position: "absolute",
-          bottom: "100px",
-          left: "20",
-          color: "blue"
+          "--width-scale": widthScale
         }}
       >
-        {message}
-      </p>
-      {detections}
+        <FontAwesomeIcon
+          icon={faChevronLeft}
+          className="chevron-back"
+          onClick={() => history.push("/")}
+        />
+        <p className="component-detector-title">Detectar componentes</p>
+      </div>
+      {selectedDetection && (
+        <div
+          className="selected-component"
+          style={{
+            "--width-scale": widthScale
+          }}
+        >
+          <p className="component-detector-title">{selectedDetection}</p>
+        </div>
+      )}
     </>
   );
 };
 
-export default Detector;
+Detector.propTypes = {
+  widthScale: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return { widthScale: state.constants.widthScale };
+};
+
+export default connect(mapStateToProps)(Detector);

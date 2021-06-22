@@ -1,11 +1,117 @@
-.detection {
+.detector-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 88px;
+  width: calc(var(--width-scale) * 414px);
+  padding-left: 64px;
+  padding-top: 32px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.component-detector-title {
+  height: 24px;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 24px;
+  margin: 0;
+  cursor: default;
+}
+
+.chevron-back {
   position: absolute;
-  left: calc((var(--left) + (var(--width) - 20) / 2) * 1px);
-  /* left: calc(var(--left) * 1px); */
-  top: calc((var(--top) + ((var(--height) - 20) / 2)) * 1px);
-  /* top: calc(var(--top) * 1px); */
-  width: 20px;
-  height: 20px;
+  left: 32px;
+  top: 34px;
+  height: 24;
+  width: 24;
+  font-size: 24px;
+  color: rgb(0, 122, 255);
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.preparing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.preparing .preparing-message {
+  display: block;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 24px;
+  text-align: center;
+  margin: 44px 0 0 0;
+  cursor: default;
+  overflow: hidden;
+}
+
+.preparing .wait {
+  display: block;
+  color: rgb(102, 102, 102);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  text-align: center;
+  margin: 8px 0 32px 0;
+  padding: 0 24px 0 24px;
+  cursor: default;
+}
+
+.detection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: blue;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.detection-position {
+  position: absolute;
+  left: calc((var(--left) + (var(--width) - 20) / 2) * 1px);
+  top: calc((var(--top) + ((var(--height) - 20) / 2)) * 1px);
+}
+
+.detection .plus-sign {
+  display: block;
+  color: white;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 40px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.selected-component {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  height: 88px;
+  width: calc(var(--width-scale) * 414px);
+  padding-left: 64px;
+  padding-top: 32px;
+  background-color: rgba(255, 255, 255);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
 }
