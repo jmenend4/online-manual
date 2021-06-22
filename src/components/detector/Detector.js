@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useAsyncError } from "../../hooks/asyncError";
 import * as tf from "@tensorflow/tfjs";
 import testVideoSrc from "../../assets/video_perilla_4_rotated.mp4";
 import testImgSrc from "../../assets/Archivo_043.jpeg";
@@ -21,7 +22,8 @@ const Detector = () => {
   const detectionBuffer = useRef([]);
   const canvas = useRef(null);
   const ctx = useRef(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const throwError = useAsyncError();
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (model === null) {
@@ -41,21 +43,20 @@ const Detector = () => {
                 //   tf.browser.fromPixels(testImage)
                 // ]);
                 const initialDetection = await _model.executeAsync(initTensor);
-                console.log(initialDetection);
+                // setMessage(initialDetection.arraySync()[0][0][0]);
                 initialDetection.dispose();
                 await calcInitialDps(initTensor, _model);
                 // createImageBatch(_model);
                 setModel(_model);
+                // throwError(new Error("mensaje de error"));
               };
             })
             .catch((error) => {
-              console.error(error);
-              setErrorMessage(error.message);
+              throwError(error);
             });
         })
         .catch((error) => {
-          console.error(error);
-          setErrorMessage(error.message);
+          throwError(error);
         });
     }
   }, []);
@@ -64,6 +65,9 @@ const Detector = () => {
     // load test video and set handlers
     testVideo.current = document.createElement("video");
     testVideo.current.src = testVideoSrc;
+    testVideo.current.playsinline = true;
+    testVideo.current.muted = true;
+    testVideo.current.style.display = "none";
     testVideo.current.onloadeddata = () => {
       canvas.current.width = testVideo.current.videoWidth;
       canvas.current.height = testVideo.current.videoHeight;
@@ -167,6 +171,7 @@ const Detector = () => {
     const dps = Math.floor(1 / (acc / 20000));
     detectionFramesToWait.current = Math.ceil(fps / dps);
     console.log("Detections per second = " + dps);
+    setMessage("Detections per second = " + dps);
     console.log(
       "Frames to wait for detection = " + detectionFramesToWait.current
     );
@@ -242,11 +247,6 @@ const Detector = () => {
         // <img ref={testImage} src={testImgSrc} onLoad={onVideoLoad}></img>
       )} */}
       <canvas ref={canvas}></canvas>
-      {errorMessage && (
-        <p style={{ position: "absolute", top: "0", left: "0", color: "red" }}>
-          {errorMessage}
-        </p>
-      )}
       {model && (
         <button
           style={{ position: "absolute", left: "100px", top: "100px" }}
@@ -259,6 +259,16 @@ const Detector = () => {
           {playing.current ? "pause" : "play"}
         </button>
       )}
+      <p
+        style={{
+          position: "absolute",
+          top: "200px",
+          left: "0",
+          color: "blue"
+        }}
+      >
+        {message}
+      </p>
     </>
   );
 };

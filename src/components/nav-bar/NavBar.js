@@ -9,7 +9,8 @@ const NavBar = ({ history }) => {
     history.push("/");
   };
   const navCameraView = () => {
-    history.push("/detector");
+    // history.push("/detector");
+    history.push("/demo");
   };
   const search = () => {};
   return (

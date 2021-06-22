@@ -1,0 +1,11 @@
+.detection {
+  position: absolute;
+  left: calc((var(--left) + (var(--width) - 20) / 2) * 1px);
+  /* left: calc(var(--left) * 1px); */
+  top: calc((var(--top) + ((var(--height) - 20) / 2)) * 1px);
+  /* top: calc(var(--top) * 1px); */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: blue;
+}
