@@ -1,7 +1,7 @@
 {
-  "name": "online-manual",
-  "description": "Online-manual",
-  "homepage": "https://jmenend4.github.io/online-manual",
+  "name": "ar_guide",
+  "description": "AR-Guide",
+  "homepage": "https://jmenend4.github.io/arguide/",
   "scripts": {
     "start": "run-p start:dev",
     "start:dev": "webpack serve --config webpack.config.dev.js --port 3000",
@@ -30,7 +30,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@tensorflow/tfjs": "^3.7.0",
+    "@tensorflow/tfjs": "3.7.0",
     "immer": "9.0.3",
     "prop-types": "15.7.2",
     "react": "16.8.4",

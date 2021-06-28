@@ -4,9 +4,23 @@
   bottom: 0;
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  width: calc(var(--width) * 1px);
   height: 88px;
   border-radius: 16px 16px 0 0;
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
+}
+
+.icon-label {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  border: 1px solid rgb(0, 122, 255);
+  border-radius: 20%;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 8px;
+  line-height: 10px;
+  cursor: default;
+  overflow: hidden;
 }

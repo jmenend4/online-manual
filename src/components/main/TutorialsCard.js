@@ -6,7 +6,13 @@ import TutorialCard from "../common/carousel/tutorial-card/TutorialCard";
 import CarouselPaginator from "../common/carousel/CarouselPaginator";
 import "./main.css";
 
-const TutorialsCard = ({ tutorials, widthScale, getTutorials, history }) => {
+const TutorialsCard = ({
+  tutorials,
+  viewPortWidth,
+  widthScale,
+  getTutorials,
+  history
+}) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -30,7 +36,13 @@ const TutorialsCard = ({ tutorials, widthScale, getTutorials, history }) => {
   };
 
   return (
-    <div className="card" style={{ height: 160 + 184 * widthScale + "px" }}>
+    <div
+      className="card"
+      style={{
+        "--width": viewPortWidth - 16,
+        height: 160 + 184 * widthScale + "px"
+      }}
+    >
       <p className="tutorials-title">Tutoriales Relacionados</p>
       {cards}
       <CarouselPaginator
@@ -45,6 +57,7 @@ const TutorialsCard = ({ tutorials, widthScale, getTutorials, history }) => {
 
 TutorialsCard.propTypes = {
   tutorials: PropTypes.array.isRequired,
+  viewPortWidth: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
   getTutorials: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
@@ -53,6 +66,7 @@ TutorialsCard.propTypes = {
 const mapStateToProps = (state) => {
   return {
     tutorials: state.tutorials,
+    viewPortWidth: state.constants.viewPortWidth,
     widthScale: state.constants.widthScale
   };
 };

@@ -41,7 +41,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: calc(var(--width) * 1px);
 }
 
 .preparing .preparing-message {
@@ -85,9 +85,22 @@
 
 .detection-position {
   position: absolute;
-  left: calc((var(--left) + (var(--width) - 20) / 2) * 1px);
-  top: calc((var(--top) + ((var(--height) - 20) / 2)) * 1px);
+  /* left: calc((var(--left) + (var(--width) - 40) / 2) * 1px); */
+  left: calc((var(--x) - 20) * 1px);
+  /* top: calc((var(--top) + ((var(--height) - 40) / 2)) * 1px); */
+  top: calc((var(--y) - 20) * 1px);
+  /* animation-name: detection-movement;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: calc(var(--animation-duration) 1ms); */
 }
+
+/* @keyframes detection-movement {
+  100% {
+    left: calc((var(--next-x) - 20) * 1px);
+    top: calc((var(--next-y) - 20) * 1px);
+  }
+} */
 
 .detection .plus-sign {
   display: block;

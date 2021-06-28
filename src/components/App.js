@@ -8,6 +8,20 @@ import Tutorial from "./tutorial/Tutorial";
 class App extends React.Component {
   state = { errorMessage: null };
 
+  // componentDidMount() {
+  //   const el = document.documentElement;
+
+  //   if (el.requestFullscreen) {
+  //     el.requestFullscreen();
+  //   } else if (el.webkitRequestFullscreen) {
+  //     el.webkitRequestFullscreen();
+  //   } else if (el.mozRequestFullScreen) {
+  //     el.webkitRequestFullscreen();
+  //   } else if (el.msRequestFullscreen) {
+  //     el.msRequestFullscreen();
+  //   }
+  // }
+
   componentDidCatch(error, info) {
     this.setState({ errorMessage: error.message });
   }

@@ -4,9 +4,16 @@ import PropTypes from "prop-types";
 import * as vehicleActions from "../../redux/actions/vehicleActions";
 import Accordeon from "../common/accordeon/Accordeon";
 import YourVehicleFeatures from "./YourVehicleFeatures";
+import fordLogo from "../../assets/ford-logo.png";
 import "./main.css";
 
-const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
+const YourVehicleCard = ({
+  vehicle,
+  viewPortWidth,
+  widthScale,
+  heightScale,
+  getVehicle
+}) => {
   useEffect(() => {
     if (vehicle.id === undefined) {
       getVehicle();
@@ -17,12 +24,13 @@ const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
       <div
         className="card"
         style={{
-          "--width": document.documentElement.clientWidth - 16,
+          "--width": viewPortWidth - 16,
           "--width-scale": widthScale,
           "--height-scale": heightScale
         }}
       >
-        <div className="your-vehicle-title">Tu Vehículo</div>
+        {/* <div className="your-vehicle-title">Tu Vehículo</div> */}
+        <img src={fordLogo} height={36} width={94} />
         <img className="your-vehicle-picture" src={vehicle.picture} />
         <Accordeon
           title={vehicle.description === undefined ? "" : vehicle.description}
@@ -37,6 +45,7 @@ const YourVehicleCard = ({ vehicle, widthScale, heightScale, getVehicle }) => {
 
 YourVehicleCard.propTypes = {
   vehicle: PropTypes.object.isRequired,
+  viewPortWidth: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
   heightScale: PropTypes.number.isRequired,
   getVehicle: PropTypes.func.isRequired
@@ -45,6 +54,7 @@ YourVehicleCard.propTypes = {
 const mapStateToProps = (state) => {
   return {
     vehicle: state.vehicle,
+    viewPortWidth: state.constants.viewPortWidth,
     widthScale: state.constants.widthScale,
     heightScale: state.constants.heightScale
   };

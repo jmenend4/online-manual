@@ -12,6 +12,7 @@ const Accordeon = ({
   initClosed = true,
   border = true,
   type = "regular",
+  viewPortWidth,
   widthScale,
   height
 }) => {
@@ -27,6 +28,7 @@ const Accordeon = ({
     <div
       className={border ? "accordeon" : ""}
       style={{
+        "--width": viewPortWidth - 16,
         "--width-scale": widthScale,
         height: !closed && height ? height + "px" : "auto"
       }}
@@ -74,12 +76,16 @@ Accordeon.propTypes = {
   initClosed: PropTypes.bool,
   border: PropTypes.bool,
   type: PropTypes.string,
+  viewPortWidth: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
   height: PropTypes.number
 };
 
 const mapStateToProps = (state) => {
-  return { widthScale: state.constants.widthScale };
+  return {
+    viewPortWidth: state.constants.viewPortWidth,
+    widthScale: state.constants.widthScale
+  };
 };
 
 export default connect(mapStateToProps)(Accordeon);

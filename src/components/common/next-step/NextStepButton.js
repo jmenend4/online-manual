@@ -8,7 +8,7 @@ const NextStepButton = ({ legend, onNextClick, widthScale }) => {
     <div
       className="next-step-container"
       style={{ "--width-scale": widthScale }}
-      onClick={() => onNextClick()}
+      onClick={(e) => onNextClick(e)}
     >
       <div className="next-step-button">
         <p className="next-step-legend">{legend}</p>
