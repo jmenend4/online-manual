@@ -115,16 +115,3 @@
   padding: 0;
   overflow: hidden;
 }
-
-.selected-component {
-  position: fixed;
-  bottom: 24px;
-  left: 0;
-  height: 88px;
-  width: calc(var(--width-scale) * 414px);
-  padding-left: 64px;
-  padding-top: 32px;
-  background-color: rgba(255, 255, 255);
-  backdrop-filter: blur(6px);
-  overflow: hidden;
-}

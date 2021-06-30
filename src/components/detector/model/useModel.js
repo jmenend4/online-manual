@@ -125,7 +125,7 @@ export const useModel = () => {
     let timeAcc = 0;
     let loopCount = 0;
     for (let i = 0; i < loops; i++) {
-      for (let j = 0; j < demoVideo.current.length; j++) {
+      for (let j = 0; j < 48; j++) {
         const initTime = new Date();
         const classDetections = [
           [-1, -1, -1, -1, -1, -1],
@@ -256,6 +256,7 @@ export const useModel = () => {
     classesTensor.dispose();
     boxesTensor.dispose();
     scoresTensor.dispose();
+    classDetections[1] = [-1, -1, -1, -1, -1];
     // console.log(tf.memory().numTensors);
     return classDetections;
   };

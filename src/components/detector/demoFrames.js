@@ -1,24 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import frame0 from "../../assets/demo_frames/frame_video4_0.jpg";
-import frame1 from "../../assets/demo_frames/frame_video4_1.jpg";
-import frame2 from "../../assets/demo_frames/frame_video4_2.jpg";
-import frame3 from "../../assets/demo_frames/frame_video4_3.jpg";
-import frame4 from "../../assets/demo_frames/frame_video4_4.jpg";
-import frame5 from "../../assets/demo_frames/frame_video4_5.jpg";
-import frame6 from "../../assets/demo_frames/frame_video4_6.jpg";
-import frame7 from "../../assets/demo_frames/frame_video4_7.jpg";
-import frame8 from "../../assets/demo_frames/frame_video4_8.jpg";
-import frame9 from "../../assets/demo_frames/frame_video4_9.jpg";
-import frame10 from "../../assets/demo_frames/frame_video4_10.jpg";
-import frame11 from "../../assets/demo_frames/frame_video4_11.jpg";
-import frame12 from "../../assets/demo_frames/frame_video4_12.jpg";
-import frame13 from "../../assets/demo_frames/frame_video4_13.jpg";
-import frame14 from "../../assets/demo_frames/frame_video4_14.jpg";
-import frame15 from "../../assets/demo_frames/frame_video4_15.jpg";
-import frame16 from "../../assets/demo_frames/frame_video4_16.jpg";
-import frame17 from "../../assets/demo_frames/frame_video4_17.jpg";
-import frame18 from "../../assets/demo_frames/frame_video4_18.jpg";
-import frame19 from "../../assets/demo_frames/frame_video4_19.jpg";
 import frame20 from "../../assets/demo_frames/frame_video4_20.jpg";
 import frame21 from "../../assets/demo_frames/frame_video4_21.jpg";
 import frame22 from "../../assets/demo_frames/frame_video4_22.jpg";
@@ -191,151 +171,25 @@ import frame188 from "../../assets/demo_frames/frame_video4_188.jpg";
 import frame189 from "../../assets/demo_frames/frame_video4_189.jpg";
 import frame190 from "../../assets/demo_frames/frame_video4_190.jpg";
 import frame191 from "../../assets/demo_frames/frame_video4_191.jpg";
-// import frame192 from "../../assets/demo_frames/frame_video4_192.jpg";
-// import frame193 from "../../assets/demo_frames/frame_video4_193.jpg";
-// import frame194 from "../../assets/demo_frames/frame_video4_194.jpg";
-// import frame195 from "../../assets/demo_frames/frame_video4_195.jpg";
-// import frame196 from "../../assets/demo_frames/frame_video4_196.jpg";
-// import frame197 from "../../assets/demo_frames/frame_video4_197.jpg";
-// import frame198 from "../../assets/demo_frames/frame_video4_198.jpg";
-// import frame199 from "../../assets/demo_frames/frame_video4_199.jpg";
-// import frame200 from "../../assets/demo_frames/frame_video4_200.jpg";
-// import frame201 from "../../assets/demo_frames/frame_video4_201.jpg";
-// import frame202 from "../../assets/demo_frames/frame_video4_202.jpg";
-// import frame203 from "../../assets/demo_frames/frame_video4_203.jpg";
-// import frame204 from "../../assets/demo_frames/frame_video4_204.jpg";
-// import frame205 from "../../assets/demo_frames/frame_video4_205.jpg";
-// import frame206 from "../../assets/demo_frames/frame_video4_206.jpg";
-// import frame207 from "../../assets/demo_frames/frame_video4_207.jpg";
-// import frame208 from "../../assets/demo_frames/frame_video4_208.jpg";
-// import frame209 from "../../assets/demo_frames/frame_video4_209.jpg";
-// import frame210 from "../../assets/demo_frames/frame_video4_210.jpg";
-// import frame211 from "../../assets/demo_frames/frame_video4_211.jpg";
-// import frame212 from "../../assets/demo_frames/frame_video4_212.jpg";
-// import frame213 from "../../assets/demo_frames/frame_video4_213.jpg";
-// import frame214 from "../../assets/demo_frames/frame_video4_214.jpg";
-// import frame215 from "../../assets/demo_frames/frame_video4_215.jpg";
-// import frame216 from "../../assets/demo_frames/frame_video4_216.jpg";
-// import frame217 from "../../assets/demo_frames/frame_video4_217.jpg";
-// import frame218 from "../../assets/demo_frames/frame_video4_218.jpg";
-// import frame219 from "../../assets/demo_frames/frame_video4_219.jpg";
-// import frame220 from "../../assets/demo_frames/frame_video4_220.jpg";
-// import frame221 from "../../assets/demo_frames/frame_video4_221.jpg";
-// import frame222 from "../../assets/demo_frames/frame_video4_222.jpg";
-// import frame223 from "../../assets/demo_frames/frame_video4_223.jpg";
-// import frame224 from "../../assets/demo_frames/frame_video4_224.jpg";
-// import frame225 from "../../assets/demo_frames/frame_video4_225.jpg";
-// import frame226 from "../../assets/demo_frames/frame_video4_226.jpg";
-// import frame227 from "../../assets/demo_frames/frame_video4_227.jpg";
-// import frame228 from "../../assets/demo_frames/frame_video4_228.jpg";
-// import frame229 from "../../assets/demo_frames/frame_video4_229.jpg";
-// import frame230 from "../../assets/demo_frames/frame_video4_230.jpg";
-// import frame231 from "../../assets/demo_frames/frame_video4_231.jpg";
-// import frame232 from "../../assets/demo_frames/frame_video4_232.jpg";
-// import frame233 from "../../assets/demo_frames/frame_video4_233.jpg";
-// import frame234 from "../../assets/demo_frames/frame_video4_234.jpg";
-// import frame235 from "../../assets/demo_frames/frame_video4_235.jpg";
-// import frame236 from "../../assets/demo_frames/frame_video4_236.jpg";
-// import frame237 from "../../assets/demo_frames/frame_video4_237.jpg";
-// import frame238 from "../../assets/demo_frames/frame_video4_238.jpg";
-// import frame239 from "../../assets/demo_frames/frame_video4_239.jpg";
-// import frame240 from "../../assets/demo_frames/frame_video4_240.jpg";
-// import frame241 from "../../assets/demo_frames/frame_video4_241.jpg";
-// import frame242 from "../../assets/demo_frames/frame_video4_242.jpg";
-// import frame243 from "../../assets/demo_frames/frame_video4_243.jpg";
-// import frame244 from "../../assets/demo_frames/frame_video4_244.jpg";
-// import frame245 from "../../assets/demo_frames/frame_video4_245.jpg";
-// import frame246 from "../../assets/demo_frames/frame_video4_246.jpg";
-// import frame247 from "../../assets/demo_frames/frame_video4_247.jpg";
-// import frame248 from "../../assets/demo_frames/frame_video4_248.jpg";
-// import frame249 from "../../assets/demo_frames/frame_video4_249.jpg";
-// import frame250 from "../../assets/demo_frames/frame_video4_250.jpg";
-// import frame251 from "../../assets/demo_frames/frame_video4_251.jpg";
-// import frame252 from "../../assets/demo_frames/frame_video4_252.jpg";
-// import frame253 from "../../assets/demo_frames/frame_video4_253.jpg";
-// import frame254 from "../../assets/demo_frames/frame_video4_254.jpg";
-// import frame255 from "../../assets/demo_frames/frame_video4_255.jpg";
-// import frame256 from "../../assets/demo_frames/frame_video4_256.jpg";
-// import frame257 from "../../assets/demo_frames/frame_video4_257.jpg";
-// import frame258 from "../../assets/demo_frames/frame_video4_258.jpg";
-// import frame259 from "../../assets/demo_frames/frame_video4_259.jpg";
-// import frame260 from "../../assets/demo_frames/frame_video4_260.jpg";
-// import frame261 from "../../assets/demo_frames/frame_video4_261.jpg";
-// import frame262 from "../../assets/demo_frames/frame_video4_262.jpg";
-// import frame263 from "../../assets/demo_frames/frame_video4_263.jpg";
-// import frame264 from "../../assets/demo_frames/frame_video4_264.jpg";
-// import frame265 from "../../assets/demo_frames/frame_video4_265.jpg";
-// import frame266 from "../../assets/demo_frames/frame_video4_266.jpg";
-// import frame267 from "../../assets/demo_frames/frame_video4_267.jpg";
-// import frame268 from "../../assets/demo_frames/frame_video4_268.jpg";
-// import frame269 from "../../assets/demo_frames/frame_video4_269.jpg";
-// import frame270 from "../../assets/demo_frames/frame_video4_270.jpg";
-// import frame271 from "../../assets/demo_frames/frame_video4_271.jpg";
-// import frame272 from "../../assets/demo_frames/frame_video4_272.jpg";
-// import frame273 from "../../assets/demo_frames/frame_video4_273.jpg";
-// import frame274 from "../../assets/demo_frames/frame_video4_274.jpg";
-// import frame275 from "../../assets/demo_frames/frame_video4_275.jpg";
-// import frame276 from "../../assets/demo_frames/frame_video4_276.jpg";
-// import frame277 from "../../assets/demo_frames/frame_video4_277.jpg";
-// import frame278 from "../../assets/demo_frames/frame_video4_278.jpg";
-// import frame279 from "../../assets/demo_frames/frame_video4_279.jpg";
-// import frame280 from "../../assets/demo_frames/frame_video4_280.jpg";
-// import frame281 from "../../assets/demo_frames/frame_video4_281.jpg";
-// import frame282 from "../../assets/demo_frames/frame_video4_282.jpg";
-// import frame283 from "../../assets/demo_frames/frame_video4_283.jpg";
-// import frame284 from "../../assets/demo_frames/frame_video4_284.jpg";
-// import frame285 from "../../assets/demo_frames/frame_video4_285.jpg";
-// import frame286 from "../../assets/demo_frames/frame_video4_286.jpg";
-// import frame287 from "../../assets/demo_frames/frame_video4_287.jpg";
-// import frame288 from "../../assets/demo_frames/frame_video4_288.jpg";
-// import frame289 from "../../assets/demo_frames/frame_video4_289.jpg";
-// import frame290 from "../../assets/demo_frames/frame_video4_290.jpg";
-// import frame291 from "../../assets/demo_frames/frame_video4_291.jpg";
-// import frame292 from "../../assets/demo_frames/frame_video4_292.jpg";
-// import frame293 from "../../assets/demo_frames/frame_video4_293.jpg";
-// import frame294 from "../../assets/demo_frames/frame_video4_294.jpg";
-// import frame295 from "../../assets/demo_frames/frame_video4_295.jpg";
-// import frame296 from "../../assets/demo_frames/frame_video4_296.jpg";
-// import frame297 from "../../assets/demo_frames/frame_video4_297.jpg";
-// import frame298 from "../../assets/demo_frames/frame_video4_298.jpg";
-// import frame299 from "../../assets/demo_frames/frame_video4_299.jpg";
-// import frame300 from "../../assets/demo_frames/frame_video4_300.jpg";
-// import frame301 from "../../assets/demo_frames/frame_video4_301.jpg";
-// import frame302 from "../../assets/demo_frames/frame_video4_302.jpg";
-// import frame303 from "../../assets/demo_frames/frame_video4_303.jpg";
-// import frame304 from "../../assets/demo_frames/frame_video4_304.jpg";
-// import frame305 from "../../assets/demo_frames/frame_video4_305.jpg";
-// import frame306 from "../../assets/demo_frames/frame_video4_306.jpg";
-// import frame307 from "../../assets/demo_frames/frame_video4_307.jpg";
-// import frame308 from "../../assets/demo_frames/frame_video4_308.jpg";
-// import frame309 from "../../assets/demo_frames/frame_video4_309.jpg";
-// import frame310 from "../../assets/demo_frames/frame_video4_310.jpg";
-// import frame311 from "../../assets/demo_frames/frame_video4_311.jpg";
-// import frame312 from "../../assets/demo_frames/frame_video4_312.jpg";
-// import frame313 from "../../assets/demo_frames/frame_video4_313.jpg";
+import frame192 from "../../assets/demo_frames/frame_video4_192.jpg";
+import frame193 from "../../assets/demo_frames/frame_video4_193.jpg";
+import frame194 from "../../assets/demo_frames/frame_video4_194.jpg";
+import frame195 from "../../assets/demo_frames/frame_video4_195.jpg";
+import frame196 from "../../assets/demo_frames/frame_video4_196.jpg";
+import frame197 from "../../assets/demo_frames/frame_video4_197.jpg";
+import frame198 from "../../assets/demo_frames/frame_video4_198.jpg";
+import frame199 from "../../assets/demo_frames/frame_video4_199.jpg";
+import frame200 from "../../assets/demo_frames/frame_video4_200.jpg";
+import frame201 from "../../assets/demo_frames/frame_video4_201.jpg";
+import frame202 from "../../assets/demo_frames/frame_video4_202.jpg";
+import frame203 from "../../assets/demo_frames/frame_video4_203.jpg";
+import frame204 from "../../assets/demo_frames/frame_video4_204.jpg";
+import frame205 from "../../assets/demo_frames/frame_video4_205.jpg";
+import frame206 from "../../assets/demo_frames/frame_video4_206.jpg";
+import frame207 from "../../assets/demo_frames/frame_video4_207.jpg";
 
 export const useDemoVideo = () => {
   const framePaths = [
-    frame0,
-    frame1,
-    frame2,
-    frame3,
-    frame4,
-    frame5,
-    frame6,
-    frame7,
-    frame8,
-    frame9,
-    frame10,
-    frame11,
-    frame12,
-    frame13,
-    frame14,
-    frame15,
-    frame16,
-    frame17,
-    frame18,
-    frame19,
     frame20,
     frame21,
     frame22,
@@ -437,6 +291,108 @@ export const useDemoVideo = () => {
     frame118,
     frame119,
     frame120,
+    100,
+    99,
+    98,
+    97,
+    96,
+    95,
+    94,
+    93,
+    92,
+    91,
+    90,
+    89,
+    88,
+    87,
+    86,
+    85,
+    84,
+    83,
+    82,
+    81,
+    80,
+    79,
+    78,
+    77,
+    76,
+    75,
+    74,
+    73,
+    72,
+    71,
+    70,
+    69,
+    68,
+    67,
+    66,
+    65,
+    64,
+    63,
+    62,
+    61,
+    60,
+    59,
+    58,
+    57,
+    56,
+    55,
+    54,
+    53,
+    52,
+    51,
+    50,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
     frame121,
     frame122,
     frame123,
@@ -455,185 +411,281 @@ export const useDemoVideo = () => {
     frame136,
     frame137,
     frame138,
-    frame139,
-    frame140,
-    frame141,
-    frame142,
-    frame143,
-    frame144,
-    frame145,
-    frame146,
-    frame147,
-    frame148,
-    frame149,
-    frame150,
-    frame151,
-    frame152,
-    frame153,
-    frame154,
-    frame155,
-    frame156,
-    frame157,
-    frame158,
-    frame159,
-    frame160,
-    frame161,
-    frame162,
-    frame163,
-    frame164,
-    frame165,
-    frame166,
-    frame167,
-    frame168,
-    frame169,
-    frame170,
-    frame171,
-    frame172,
-    frame173,
-    frame174,
-    frame175,
-    frame176,
-    frame177,
-    frame178,
-    frame179,
-    frame180,
-    frame181,
-    frame182,
-    frame183,
-    frame184,
-    frame185,
-    frame186,
-    frame187,
-    frame188,
-    frame189,
-    frame190,
-    frame191
+    220,
+    220,
+    220,
+    219,
+    218,
+    217,
+    216,
+    215,
+    214,
+    213,
+    212,
+    211,
+    210,
+    209,
+    208,
+    207,
+    206,
+    205,
+    204,
+    203,
+    100,
+    99,
+    98,
+    97,
+    96,
+    95,
+    94,
+    93,
+    92,
+    91,
+    90,
+    89,
+    88,
+    87,
+    86,
+    85,
+    84,
+    83,
+    82,
+    81,
+    80,
+    79,
+    78,
+    77,
+    76,
+    75,
+    74,
+    73,
+    72,
+    71,
+    70,
+    69,
+    68,
+    67,
+    66,
+    65,
+    64,
+    63,
+    62,
+    61,
+    60,
+    59,
+    58,
+    57,
+    56,
+    55,
+    54,
+    53,
+    52,
+    51,
+    50,
+    49,
+    48,
+    47,
+    46,
+    45,
+    44,
+    43,
+    42,
+    41,
+    40,
+    39,
+    38,
+    37,
+    36,
+    35,
+    34,
+    33,
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0
   ];
-  //     //   frame192,
-  //   frame193,
-  //   frame194,
-  //   frame195,
-  //   frame196,
-  //   frame197,
-  //   frame198,
-  //   frame199,
-  //   frame200,
-  //   frame201,
-  //   frame202,
-  //   frame203,
-  //   frame204,
-  //   frame205,
-  //   frame206,
-  //   frame207,
-  //   frame208,
-  //   frame209,
-  //   frame210,
-  //   frame211,
-  //   frame212,
-  //   frame213,
-  //   frame214,
-  //   frame215,
-  //   frame216,
-  //   frame217,
-  //   frame218,
-  //   frame219,
-  //   frame220,
-  //   frame221,
-  //   frame222,
-  //   frame223,
-  //   frame224,
-  //   frame225,
-  //   frame226,
-  //   frame227,
-  //   frame228,
-  //   frame229,
-  //   frame230,
-  //   frame231,
-  //   frame232,
-  //   frame233,
-  //   frame234,
-  //   frame235,
-  //   frame236,
-  //   frame237,
-  //   frame238,
-  //   frame239,
-  //   frame240,
-  //   frame241,
-  //   frame242,
-  //   frame243,
-  //   frame244,
-  //   frame245,
-  //   frame246,
-  //   frame247,
-  //   frame248,
-  //   frame249,
-  //   frame250,
-  //   frame251,
-  //   frame252,
-  //   frame253,
-  //   frame254,
-  //   frame255,
-  //   frame256,
-  //   frame257,
-  //   frame258,
-  //   frame259,
-  //   frame260,
-  //   frame261,
-  //   frame262,
-  //   frame263,
-  //   frame264,
-  //   frame265,
-  //   frame266,
-  //   frame267,
-  //   frame268,
-  //   frame269,
-  //   frame270,
-  //   frame271,
-  //   frame272,
-  //   frame273,
-  //   frame274,
-  //   frame275,
-  //   frame276,
-  //   frame277,
-  //   frame278,
-  //   frame279,
-  //   frame280,
-  //   frame281,
-  //   frame282,
-  //   frame283,
-  //   frame284,
-  //   frame285,
-  //   frame286,
-  //   frame287,
-  //   frame288,
-  //   frame289,
-  //   frame290,
-  //   frame291,
-  //   frame292,
-  //   frame293,
-  //   frame294,
-  //   frame295,
-  //   frame296,
-  //   frame297,
-  //   frame298,
-  //   frame299,
-  //   frame300,
-  //   frame301,
-  //   frame302,
-  //   frame303,
-  //   frame304,
-  //   frame305,
-  //   frame306,
-  //   frame307,
-  //   frame308,
-  //   frame309,
-  //   frame310,
-  //   frame311,
-  //   frame312,
-  //   frame313
-  // ];
 
   const demoVideo = useRef([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     null,
@@ -828,28 +880,51 @@ export const useDemoVideo = () => {
   ]);
 
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const loaded = useRef(false);
+  const loaded = useRef(0);
 
   useEffect(() => {
     loadDemoVideo();
   }, []);
 
   const loadDemoVideo = async () => {
+    const lastFrameIndex = findLastFrameIndex();
     framePaths.forEach((framePath, i) => {
-      const frame = new Image();
-      frame.src = framePath;
-      frame.onload = () => {
+      const ref = +framePath;
+      if (Number.isNaN(ref)) {
+        const frame = new Image();
+        frame.src = framePath;
         demoVideo.current[i] = frame;
-        if (i === framePaths.length - 1) {
-          loaded.current = true;
-          setVideoLoaded(true);
-        }
-      };
+        frame.onload = () => {
+          if (i === lastFrameIndex) {
+            loaded.current = true;
+            setVideoLoaded(true);
+          }
+        };
+      } else {
+        demoVideo.current[i] = demoVideo.current[ref];
+      }
     });
     while (!loaded.current) {
       await sleep(500);
     }
+    framePaths.forEach((framePath, i) => {
+      const ref = +framePath;
+      if (!Number.isNaN(ref)) {
+        demoVideo.current[i] = demoVideo.current[ref];
+      }
+    });
     return demoVideo;
+  };
+
+  const findLastFrameIndex = () => {
+    let lastFrameIndex = 0;
+    framePaths.forEach((framePath, i) => {
+      const ref = +framePath;
+      if (Number.isNaN(ref)) {
+        lastFrameIndex = i;
+      }
+    });
+    return lastFrameIndex;
   };
 
   const sleep = (ms) => {
