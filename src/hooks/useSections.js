@@ -9,6 +9,10 @@ import FourWheelDrive from "../components/common/icons/FourWheelDrive";
 import HandleWarning from "../components/common/icons/HandleWarning";
 import PickUp from "../components/common/icons/PickUp";
 import Speedometer from "../components/common/icons/Speedometer";
+import tractionSwitchIcon from "../assets/traction_switch.png";
+import tractionControlIcon from "../assets/traction-control.png";
+import differentialLockIcon from "../assets/differential-lock.png";
+import hillDescentIcon from "../assets/hill-descent.png";
 import "../components/tutorial/tutorial.css";
 
 export const useSections = (step) => {
@@ -16,12 +20,15 @@ export const useSections = (step) => {
 
   useEffect(() => {
     setSections(buildSections(step));
-  }, []);
+  }, [step]);
 
   return sections;
 };
 
 const buildSections = (step) => {
+  if (step === undefined) {
+    return null;
+  }
   const _sections = step.sections.map((section, i) => {
     switch (section.type) {
       case "videos": {
@@ -82,7 +89,7 @@ const buildSections = (step) => {
             title={section.title}
             payload={subSections}
             type={section.type}
-            initClosed={false}
+            initClosed={section.initClosed ? section.initClosed : false}
           />
         );
       }
@@ -114,6 +121,18 @@ const selectIcon = (iconDescriptor, index) => {
     }
     case "speedometer": {
       return <Speedometer style={style} />;
+    }
+    case "tractionSwitch": {
+      return <img src={tractionSwitchIcon} height={32} style={style} />;
+    }
+    case "tractionControl": {
+      return <img src={tractionControlIcon} height={32} style={style} />;
+    }
+    case "differentialLock": {
+      return <img src={differentialLockIcon} height={32} style={style} />;
+    }
+    case "hillDescent": {
+      return <img src={hillDescentIcon} height={32} style={style} />;
     }
     default: {
       return <Shield style={style} />;

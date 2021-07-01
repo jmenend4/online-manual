@@ -7,7 +7,8 @@ export const useDetector = (
   canvas,
   predict,
   detect,
-  setClickedDetection
+  setClickedDetection,
+  selectedDetection
 ) => {
   const FPS = 24;
   const FRAME_SPAN = Math.ceil(1000 / FPS);
@@ -19,6 +20,7 @@ export const useDetector = (
   const detectionsBuffer = useRef([]);
   const ctx = useRef(null);
   const classTracker = useRef([0, 0, 0, 0, 0]);
+  const selectedDetectionRef = useRef(null);
   const [drawnDetections, setDrawnDetections] = useState([
     null,
     null,
@@ -35,6 +37,10 @@ export const useDetector = (
       ctx.current = canvas.current.getContext("2d");
     }
   }, [dps]);
+
+  useEffect(() => {
+    selectedDetectionRef.current = selectedDetection;
+  }, [selectedDetection]);
 
   const initBuffers = () => {
     const buffersSize = detectionFramesInterval.current * 10;
@@ -274,7 +280,10 @@ export const useDetector = (
       <div
         key={"__detection_class_" + cls}
         id={"__detection_class_" + cls}
-        className="detection detection-position"
+        className={
+          "detection detection-position" +
+          (selectedDetectionRef.current === cls ? " selected-detection" : "")
+        }
         style={{
           display: det[0] < 0 ? "none" : "flex",
           "--x": det[1],
@@ -284,6 +293,7 @@ export const useDetector = (
           // "--animation-duration": frameRate * detectionFramesToWait.current
         }}
         onClick={(e) => {
+          e.preventDefault();
           e.stopPropagation();
           setClickedDetection(cls);
         }}

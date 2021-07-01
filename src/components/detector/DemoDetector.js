@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
+import * as featuresActions from "../../redux/actions/featuresActions";
 import PropTypes from "prop-types";
 import { useDemoVideo } from "./demoFrames";
 import NextStepButton from "../common/next-step/NextStepButton";
@@ -7,10 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useModel } from "./model/useModel";
 import { useDetector } from "./useDetector";
-import "./detector.css";
 import DetectedFeatureCard from "../detected-feature-card/DetectedFeatureCard";
+import "./detector.css";
 
-const Detector = ({ viewPortWidth, widthScale, history }) => {
+const Detector = ({
+  features,
+  initializeFeatures,
+  viewPortWidth,
+  viewPortHeight,
+  widthScale,
+  history
+}) => {
   const [detect, setDetect] = useState(false);
   const [selectedDetection, setSelectedDetection] = useState(null);
   const [message, setMessage] = useState(null);
@@ -24,8 +32,15 @@ const Detector = ({ viewPortWidth, widthScale, history }) => {
     canvas,
     predict,
     detect,
-    setSelectedDetection
+    setSelectedDetection,
+    selectedDetection
   );
+
+  useEffect(() => {
+    if (features.length === 0) {
+      initializeFeatures();
+    }
+  }, [features.length]);
 
   useEffect(() => {
     setMessage(
@@ -53,43 +68,17 @@ const Detector = ({ viewPortWidth, widthScale, history }) => {
     };
   }, [videoLoaded]);
 
-  // const detectionClicked = (cls) => {
-  //   switch (cls) {
-  //     case 0: {
-  //       setSelectedDetection("Perilla de cambio de tracción");
-  //       break;
-  //     }
-  //     case 1: {
-  //       setSelectedDetection("Botones de control de tracción");
-  //       break;
-  //     }
-  //     case 2: {
-  //       setSelectedDetection("Control de tracción");
-  //       break;
-  //     }
-  //     case 3: {
-  //       setSelectedDetection("Bloqueo de diferencial");
-  //       break;
-  //     }
-  //     case 4: {
-  //       setSelectedDetection("Control de descenso");
-  //       break;
-  //     }
-  //     default: {
-  //       setSelectedDetection(null);
-  //     }
-  //   }
-  // };
-
   return (
-    <>
+    <div
+      className="detector-background"
+      style={{ "--width": viewPortWidth, "--height": viewPortHeight }}
+    >
       <canvas
         ref={canvas}
         style={{ position: "absolute", top: "0px", left: "0px" }}
         onClick={(e) => {
           e.stopPropagation();
-          setSelectedDetection(-1);
-          // detectionClicked(-1);
+          setSelectedDetection(null);
         }}
       ></canvas>
       {!dps && !detect && (
@@ -138,32 +127,35 @@ const Detector = ({ viewPortWidth, widthScale, history }) => {
         />
         <p className="component-detector-title">Detectar componentes</p>
       </div>
-      {selectedDetection && (
-        // <div
-        //   className="selected-component"
-        //   style={{
-        //     "--width-scale": widthScale
-        //   }}
-        // >
-        //   <p className="component-detector-title">{selectedDetection}</p>
-        // </div>
-        <DetectedFeatureCard />
-      )}
-    </>
+      <DetectedFeatureCard
+        cls={selectedDetection}
+        setSelectedDetection={setSelectedDetection}
+        features={features}
+      />
+    </div>
   );
 };
 
 Detector.propTypes = {
+  features: PropTypes.array.isRequired,
+  initializeFeatures: PropTypes.func.isRequired,
   viewPortWidth: PropTypes.number.isRequired,
+  viewPortHeight: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
+    features: state.features,
     viewPortWidth: state.constants.viewPortWidth,
+    viewPortHeight: state.constants.viewPortHeight,
     widthScale: state.constants.widthScale
   };
 };
 
-export default connect(mapStateToProps)(Detector);
+const mapDispatchToProps = {
+  initializeFeatures: featuresActions.initializeFeatures
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detector);

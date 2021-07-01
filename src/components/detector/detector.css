@@ -1,3 +1,12 @@
+.detector-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(var(--width) * 1px);
+  height: calc(var(--height) * 1px);
+  overflow: hidden;
+}
+
 .detector-header {
   position: fixed;
   top: 0;
@@ -81,6 +90,8 @@
   background-color: blue;
   opacity: 0.5;
   cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .detection-position {
@@ -101,6 +112,10 @@
     top: calc((var(--next-y) - 20) * 1px);
   }
 } */
+
+.selected-detection {
+  opacity: 1;
+}
 
 .detection .plus-sign {
   display: block;
