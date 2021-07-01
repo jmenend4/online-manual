@@ -233,7 +233,7 @@ export const useModel = () => {
       const scores = tf.reshape(initialDetection[3], [-1]);
       const classes = tf.reshape(initialDetection[1], [-1]);
       const scale = initialDetection[2];
-      const mask = scores.greater(tf.tensor1d([0.4]));
+      const mask = scores.greater(tf.tensor1d([0.5]));
       const filteredBoxes = booleanMaskSync(boxes, mask).mul(scale);
       const filteredScores = booleanMaskSync(scores, mask);
       const filteredClasses = booleanMaskSync(classes, mask);

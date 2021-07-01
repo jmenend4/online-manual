@@ -44,7 +44,7 @@ const Detector = ({
 
   useEffect(() => {
     setMessage(
-      "Tu equipo puede realizar " +
+      "Este dispositivo puede realizar " +
         Math.floor(dps) +
         " detecciones por segundo."
     );
@@ -87,15 +87,21 @@ const Detector = ({
           <h2 className="wait">Aguardá un instante por favor</h2>
         </div>
       )}
-      {dps && !detect && (
+      {dps && !detect && videoLoaded && (
         <div className="preparing" style={{ "--width": viewPortWidth }}>
+          <h1 className="preparing-message">Listo!</h1>
+          <h2 className="prepared-message">
+            A continuación se reporducirá un video del panel central de una
+            Ranger 2020. <br></br>
+          </h2>
           <h1 className="preparing-message">
-            Listo! <br></br> Tocá la detección para obtener más información
-            sobre el componente
+            Los componentes serán detectados en vivo por tu dispositivo!
+            <br></br>
           </h1>
+          <h2 className="prepared-message">Tocá la detección</h2>
           <div
             className="detection"
-            style={{ margin: "16px 24px 32px 24px" }}
+            style={{ margin: "16px 24px 16px 24px" }}
             onClick={(e) => {
               e.stopPropagation();
               setDetect(true);
@@ -103,6 +109,9 @@ const Detector = ({
           >
             <div className="plus-sign">+</div>
           </div>
+          <h2 className="prepared-message">
+            para obtener más información sobre el componente
+          </h2>
           <h2 className="wait">{message}</h2>
           <NextStepButton
             legend="INICIAR DETECCIÓN"
