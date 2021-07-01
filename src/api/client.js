@@ -213,7 +213,7 @@ export const getVehicle = () => {
   //pendind add userId to make the fetch
   return Promise.resolve({
     id: "ABCD",
-    description: "Ranger LIMITED 3.2L",
+    description: "Ranger Raptor",
     picture: ranger,
     features: [
       { feature: "crewCab", type: "Cabina Doble", icon: crewCabIcon },
