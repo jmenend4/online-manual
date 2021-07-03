@@ -107,43 +107,112 @@ export const useDetector = (
 
   const estimate = (index) => {
     // todo apply kalman filter to the 3 estimations
-    const [
-      estimatedMovedDet,
-      estimatedStaticDet,
-      estimatedZoomedDet,
-      zoomIndex
-    ] = estimateDets(index);
+    // const [
+    //   estimatedMovedDet,
+    //   estimatedStaticDet,
+    //   estimatedZoomedDet,
+    //   zoomIndex
+    // ] = estimateDets(index);
     const currDet = detectionsBuffer.current[index];
+    const prevDet =
+      detectionsBuffer.current[getSteppedDetectionIndex(index, -1)];
+
+    // for (let cls = 0; cls < 2; cls++) {
+    //   const classDet = currDet[cls];
     currDet.forEach((classDet, cls) => {
       let sumX = 0;
       let sumY = 0;
+      let sumWidth = 0;
+      let sumHeight = 0;
       let estCount = 0;
-      if (classDet[0] > 0) {
-        sumY += classDet[0] * 500;
-        sumX += classDet[1] * 500;
-        estCount += 500;
+      if (classDet[4] > 0) {
+        classTracker.current[cls] = dps * 1.5;
+        sumY += classDet[0];
+        sumX += classDet[1];
+        sumHeight += classDet[2];
+        sumWidth += classDet[3];
+        estCount++;
       }
-      if (estimatedMovedDet[cls][0] > 0) {
-        sumY += estimatedMovedDet[cls][0] * (100 - zoomIndex);
-        sumX += estimatedMovedDet[cls][1] * (100 - zoomIndex);
-        estCount += 100 - zoomIndex;
+      if (prevDet[cls][0] > 0 && classTracker.current[cls] > 0) {
+        sumY += prevDet[cls][0] * 10;
+        sumX += prevDet[cls][1] * 10;
+        sumHeight += prevDet[cls][2] * 10;
+        sumWidth += prevDet[cls][3] * 10;
+        estCount += 10;
       }
-      if (estimatedStaticDet[cls][0] > 0) {
-        sumY += estimatedStaticDet[cls][0] * 500;
-        sumX += estimatedStaticDet[cls][1] * 500;
-        estCount += 500;
-      }
-      if (estimatedZoomedDet[cls][0] > 0) {
-        sumY += estimatedZoomedDet[cls][0] * zoomIndex;
-        sumX += estimatedZoomedDet[cls][1] * zoomIndex;
-        estCount += zoomIndex;
-      }
+      //     if (estimatedMovedDet[cls][0] > 0) {
+      //       sumY += estimatedMovedDet[cls][0] * (100 - zoomIndex);
+      //       sumX += estimatedMovedDet[cls][1] * (100 - zoomIndex);
+      //       estCount += 100 - zoomIndex;
+      //     }
+      //   if (estimatedStaticDet[cls][0] > 0) {
+      //     sumY += estimatedStaticDet[cls][0] * 2;
+      //     sumX += estimatedStaticDet[cls][1] * 2;
+      //     estCount += 2;
+      //   }
+      //     if (estimatedZoomedDet[cls][0] > 0) {
+      //       sumY += estimatedZoomedDet[cls][0] * zoomIndex;
+      //       sumX += estimatedZoomedDet[cls][1] * zoomIndex;
+      //       estCount += zoomIndex;
+      //     }
       if (estCount > 0) {
         classDet[0] = sumY / estCount;
         classDet[1] = sumX / estCount;
-        // classDet[2]
+        classDet[2] = sumHeight / estCount;
+        classDet[3] = sumWidth / estCount;
       }
+      classTracker.current[cls]--;
+      // }
     });
+    calcDets(currDet);
+  };
+
+  const calcDets = (currDet) => {
+    if (currDet[0][0] > 0 && currDet[1][0] > 0) {
+      calcTractionButtonsDets(currDet);
+    }
+  };
+
+  const calcTractionButtonsDets = (currDet) => {
+    // traction selector top left corner
+    const ts = [
+      currDet[0][1] - currDet[0][3] / 2,
+      currDet[0][0] - currDet[0][2] / 2
+    ];
+    // traction menu top left corner
+    const tm = [
+      currDet[1][1] - currDet[1][3] / 2,
+      currDet[1][0] - currDet[1][2] / 2
+    ];
+    // let's calculate the line that goes through all three buttons
+    const ortoAngleTan = -1 / ((ts[1] - tm[1]) / (ts[0] - tm[0]));
+    const orderedToZero = currDet[1][0] - ortoAngleTan * currDet[1][1];
+
+    // traction control button x
+    const tcX = tm[0] + 20;
+    // hill descent button x
+    const hdX = tm[0] + currDet[1][3] - 20;
+
+    // let's get the coordinates of all three buttons
+    // traction control button
+    if (currDet[2][0] > 0) {
+      currDet[2][1] = (tcX + currDet[2][1]) / 2;
+      currDet[2][0] =
+        (ortoAngleTan * tcX + orderedToZero + 5 * currDet[2][0]) / 6;
+    } else {
+      currDet[2][1] = tcX;
+      currDet[2][0] = ortoAngleTan * tcX + orderedToZero;
+    }
+
+    // differential lock button is set equal to the menu detection
+    currDet[3][0] = currDet[1][0];
+    currDet[3][1] = currDet[1][1];
+    // hill descent button
+    currDet[4][1] = hdX;
+    currDet[4][0] = ortoAngleTan * hdX + orderedToZero;
+
+    // remove class 1 from rendering
+    // currDet[1][0] = -1;
   };
 
   const estimateDets = (index) => {
@@ -205,6 +274,7 @@ export const useDetector = (
         estimatedStaticDet[cls][0] = prevDet[cls][0];
         estimatedStaticDet[cls][1] = prevDet[cls][1];
       }
+      classTracker.current[cls]--;
     });
     return [
       estimatedMovedDet,
@@ -277,6 +347,7 @@ export const useDetector = (
   const drawDetection = (index) => {
     // const _detections = [...drawnDetections];
     const _detections = detectionsBuffer.current[index].map((det, cls) => (
+      //   <>
       <div
         key={"__detection_class_" + cls}
         id={"__detection_class_" + cls}
@@ -285,7 +356,7 @@ export const useDetector = (
           (selectedDetectionRef.current === cls ? " selected-detection" : "")
         }
         style={{
-          display: det[0] < 0 ? "none" : "flex",
+          display: det[0] < 0 || cls === 1 ? "none" : "flex",
           "--x": det[1],
           "--y": det[0]
           // "--next-x": nextDet[3] === -1 ? currDet[1] : nextDet[1],
@@ -300,6 +371,20 @@ export const useDetector = (
       >
         <div className="plus-sign">+</div>
       </div>
+      //     {/* {cls === 1 && (
+      //       <div
+      //         key={"__detection_class_" + cls}
+      //         style={{
+      //           position: "absolute",
+      //           left: det[1] - det[3] / 2,
+      //           top: det[0] - det[2] / 2,
+      //           width: det[3],
+      //           height: det[2],
+      //           border: "2px solid blue"
+      //         }}
+      //       ></div>
+      //     )}
+      //   </> */}
     ));
     // _detections[1] = null;
     setDrawnDetections(_detections);
@@ -313,5 +398,6 @@ export const useDetector = (
       i = i === top ? 0 : i + 1;
     }
   }
+
   return drawnDetections;
 };

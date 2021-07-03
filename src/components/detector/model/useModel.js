@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useAsyncError } from "../../../hooks/asyncError";
 import * as tf from "@tensorflow/tfjs";
-// import testImgSrc from "../../../assets/Archivo_043.jpeg";
+import testImgSrc from "../../../assets/Archivo_043.jpeg";
 // import testImgSrc from "../../../assets/demo_frames/frame_video4_0.jpg";
-import testImgSrc from "../../../assets/Archivo_019.jpeg";
+// import testImgSrc from "../../../assets/Archivo_019.jpeg";
 import { useDemoVideo } from "../demoFrames";
 
 export const useModel = () => {
@@ -256,7 +256,9 @@ export const useModel = () => {
     classesTensor.dispose();
     boxesTensor.dispose();
     scoresTensor.dispose();
-    classDetections[1] = [-1, -1, -1, -1, -1];
+    // classDetections[2] = [-1, -1, -1, -1, -1];
+    // classDetections[3] = [-1, -1, -1, -1, -1];
+    // classDetections[4] = [-1, -1, -1, -1, -1];
     // console.log(tf.memory().numTensors);
     return classDetections;
   };

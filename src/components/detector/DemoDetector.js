@@ -17,6 +17,7 @@ const Detector = ({
   viewPortWidth,
   viewPortHeight,
   widthScale,
+  heightScale,
   history
 }) => {
   const [detect, setDetect] = useState(false);
@@ -82,13 +83,19 @@ const Detector = ({
         }}
       ></canvas>
       {!dps && !detect && (
-        <div className="preparing" style={{ "--width": viewPortWidth }}>
+        <div
+          className="preparing"
+          style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
+        >
           <h1 className="preparing-message">Preparando para detectar</h1>{" "}
           <h2 className="wait">Aguardá un instante por favor</h2>
         </div>
       )}
       {dps && !detect && videoLoaded && (
-        <div className="preparing" style={{ "--width": viewPortWidth }}>
+        <div
+          className="preparing"
+          style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
+        >
           <h1 className="preparing-message">Listo!</h1>
           <h2 className="prepared-message">
             A continuación se reporducirá un video del panel central de una
@@ -151,6 +158,7 @@ Detector.propTypes = {
   viewPortWidth: PropTypes.number.isRequired,
   viewPortHeight: PropTypes.number.isRequired,
   widthScale: PropTypes.number.isRequired,
+  heightScale: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired
 };
 
@@ -159,7 +167,8 @@ const mapStateToProps = (state) => {
     features: state.features,
     viewPortWidth: state.constants.viewPortWidth,
     viewPortHeight: state.constants.viewPortHeight,
-    widthScale: state.constants.widthScale
+    widthScale: state.constants.widthScale,
+    heightScale: state.constants.heightScale
   };
 };
 

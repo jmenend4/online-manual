@@ -58,10 +58,10 @@
   display: block;
   color: rgb(0, 122, 255);
   font-family: "SF Pro Display", sans-serif;
-  font-size: 20px;
+  font-size: calc(var(--height-scale) * 20px);
   font-weight: 600;
   letter-spacing: 0.38px;
-  line-height: 24px;
+  line-height: calc(var(--height-scale) * 24px);
   text-align: center;
   margin: 0 0 16px 0;
   cursor: default;
@@ -72,9 +72,9 @@
   display: block;
   color: rgb(102, 102, 102);
   font-family: "SF Pro Text", sans-serif;
-  font-size: 16px;
+  font-size: calc(var(--height-scale) * 16px);
   letter-spacing: -0.39px;
-  line-height: 24px;
+  line-height: calc(var(--height-scale) * 20px);
   text-align: center;
   margin: 8px 0 32px 0;
   padding: 0 24px 0 24px;
@@ -85,10 +85,10 @@
   display: block;
   color: rgb(0, 122, 255);
   font-family: "SF Pro Display", sans-serif;
-  font-size: 16px;
+  font-size: calc(var(--height-scale) * 16px);
   font-weight: 400;
   letter-spacing: 0.38px;
-  line-height: 20px;
+  line-height: calc(var(--height-scale) * 20px);
   text-align: center;
   cursor: default;
   overflow: hidden;

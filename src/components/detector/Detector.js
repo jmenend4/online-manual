@@ -53,8 +53,7 @@ const Detector = ({
     let track;
     const constraints = {
       video: {
-        facingMode: "environment",
-        width: viewPortWidth
+        facingMode: "environment"
       },
       audio: false
     };
