@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useSections } from "../../hooks/useSections";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
+  faTimes,
   faChevronUp,
   faChevronDown
 } from "@fortawesome/free-solid-svg-icons";
@@ -79,7 +79,7 @@ const DetectedFeatureCard = ({
       <div className="detected-feature-nav">
         <p className="detected-feature-title">{featureName}</p>
         <FontAwesomeIcon
-          icon={faChevronLeft}
+          icon={faTimes}
           className="detected-feature-close-icon"
           onClick={(e) => close(e)}
         />

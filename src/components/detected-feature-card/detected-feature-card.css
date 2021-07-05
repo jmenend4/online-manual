@@ -33,18 +33,8 @@
 
 .detected-feature-card > .detected-feature-nav > .detected-feature-close-icon {
   position: absolute;
-  left: 16px;
+  right: 16px;
   top: 16px;
-  font-size: 24px;
-  color: rgb(0, 122, 255);
-  /* color: rgba(0, 0, 0, 1); */
-  cursor: pointer;
-}
-
-.detected-feature-card > .detected-feature-nav > .detected-feature-close-icon {
-  position: absolute;
-  left: 16px;
-  top: 20px;
   font-size: 24px;
   color: rgb(0, 122, 255);
   /* color: rgba(0, 0, 0, 1); */
@@ -53,7 +43,7 @@
 
 .detected-feature-card > .detected-feature-nav > .detected-feature-expand-icon {
   position: absolute;
-  right: 16px;
+  left: 16px;
   top: 16px;
   font-size: 24px;
   color: rgb(0, 122, 255);

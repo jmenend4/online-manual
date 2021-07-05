@@ -168,7 +168,7 @@ export const useDetector = (
   };
 
   const calcDets = (currDet) => {
-    if (currDet[0][0] > 0 && currDet[1][0] > 0) {
+    if (currDet[1][0] > 0) {
       calcTractionButtonsDets(currDet);
     }
   };
@@ -185,7 +185,8 @@ export const useDetector = (
       currDet[1][0] - currDet[1][2] / 2
     ];
     // let's calculate the line that goes through all three buttons
-    const ortoAngleTan = -1 / ((ts[1] - tm[1]) / (ts[0] - tm[0]));
+    const ortoAngleTan =
+      currDet[0][0] > 0 ? -1 / ((ts[1] - tm[1]) / (ts[0] - tm[0])) : 0;
     const orderedToZero = currDet[1][0] - ortoAngleTan * currDet[1][1];
 
     // traction control button x
