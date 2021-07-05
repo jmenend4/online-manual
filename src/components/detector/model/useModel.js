@@ -8,6 +8,7 @@ import { useDemoVideo } from "../demoFrames";
 
 export const useModel = () => {
   const NUM_CLASSES = 5;
+  const SCORE_THRESH = 0.7;
 
   const model = useRef(null);
   const [demoVideo, demoVideoLoaded] = useDemoVideo();
@@ -85,7 +86,7 @@ export const useModel = () => {
             scores,
             100,
             0.5,
-            0.4
+            SCORE_THRESH
           );
           const nmsScores = nmsResult.selectedScores;
           const nmsBoxes = tf
@@ -120,6 +121,9 @@ export const useModel = () => {
     return dps;
   };
 
+  // const cls0Sum = useRef([]);
+  // const cls1Sum = useRef([]);
+
   const noNmsTest = async (_model, loops) => {
     console.log("Running test without NMS but with top of class");
     let timeAcc = 0;
@@ -141,7 +145,7 @@ export const useModel = () => {
           const scores = tf.reshape(initialDetection[3], [-1]);
           const classes = tf.reshape(initialDetection[1], [-1]);
           const scale = initialDetection[2];
-          const mask = scores.greater(tf.tensor1d([0.4]));
+          const mask = scores.greater(tf.tensor1d([SCORE_THRESH]));
           const filteredBoxes = booleanMaskSync(boxes, mask).mul(scale);
           const filteredScores = booleanMaskSync(scores, mask);
           const filteredClasses = booleanMaskSync(classes, mask);
@@ -167,8 +171,24 @@ export const useModel = () => {
         timeAcc += new Date() - initTime;
         loopCount++;
         // console.log(tf.memory().numTensors);
+        // if (classDetections[0][4] > 0) {
+        //   cls0Sum.current.push(classDetections[0][4]);
+        // }
+        // if (classDetections[1][4] > 0) {
+        //   cls1Sum.current.push(classDetections[1][4]);
+        // }
       }
     }
+    // console.log(
+    //   "class 0 score mean: " +
+    //     cls0Sum.current.reduce((sum, score) => sum + score) /
+    //       cls0Sum.current.length
+    // );
+    // console.log(
+    //   "class 1 score mean: " +
+    //     cls1Sum.current.reduce((sum, score) => sum + score) /
+    //       cls1Sum.current.length
+    // );
     const dps = 1 / (timeAcc / (loopCount * 1000));
     return dps;
   };
@@ -233,7 +253,7 @@ export const useModel = () => {
       const scores = tf.reshape(initialDetection[3], [-1]);
       const classes = tf.reshape(initialDetection[1], [-1]);
       const scale = initialDetection[2];
-      const mask = scores.greater(tf.tensor1d([0.5]));
+      const mask = scores.greater(tf.tensor1d([SCORE_THRESH]));
       const filteredBoxes = booleanMaskSync(boxes, mask).mul(scale);
       const filteredScores = booleanMaskSync(scores, mask);
       const filteredClasses = booleanMaskSync(classes, mask);
