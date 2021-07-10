@@ -89,14 +89,6 @@ const Detector = ({
           style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
         >
           <h1 className="preparing-message">Listo!</h1>
-          <h2 className="prepared-message">
-            A continuación se reporducirá un video del panel central de una
-            Ranger 2020. <br></br>
-          </h2>
-          <h1 className="preparing-message">
-            Los componentes serán detectados en vivo por tu dispositivo!
-            <br></br>
-          </h1>
           <h2 className="prepared-message">Tocá la detección</h2>
           <div
             className="detection"
@@ -113,7 +105,7 @@ const Detector = ({
           </h2>
           <h2 className="wait">{message}</h2>
           <NextStepButton
-            legend="INICIAR DETECCIÓN"
+            legend="LANZAR DETECCIÓN SOBRE VIDEO"
             onNextClick={(e) => {
               e.stopPropagation();
               setDetect(true);

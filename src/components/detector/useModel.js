@@ -274,6 +274,52 @@ export const useModel = () => {
     return out.toTensor();
   };
 
+  const predictNms = (imageTensor) => {
+    const classDetections = [
+      [-1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1]
+    ];
+    const [boxesTensor, scoresTensor, classesTensor] = tf.tidy(() => {
+      const initialDetection = model.current.execute(imageTensor);
+      const boxes = tf.reshape(initialDetection[0], [-1, 4]);
+      const scores = tf.reshape(initialDetection[3], [-1]);
+      const classes = tf.reshape(initialDetection[1], [-1]);
+      const scale = initialDetection[2];
+      const nmsResult = tf.image.nonMaxSuppressionWithScore(
+        boxes,
+        scores,
+        100,
+        0.5,
+        SCORE_THRESH
+      );
+      const nmsScores = nmsResult.selectedScores;
+      const nmsBoxes = tf.gather(boxes, nmsResult.selectedIndices).mul(scale);
+      const nmsClasses = tf.gather(classes, nmsResult.selectedIndices);
+      return [nmsBoxes, nmsScores, nmsClasses];
+    });
+    const classes = classesTensor.arraySync();
+    const boxes = boxesTensor.arraySync();
+    const scores = scoresTensor.arraySync();
+    classes.forEach((cls, i) => {
+      const height = boxes[i][2] - boxes[i][0];
+      const width = boxes[i][3] - boxes[i][1];
+      classDetections[cls] = [
+        boxes[i][0] + height / 2,
+        boxes[i][1] + width / 2,
+        height,
+        width,
+        scores[i]
+      ];
+    });
+    classesTensor.dispose();
+    boxesTensor.dispose();
+    scoresTensor.dispose();
+    return classDetections;
+  };
+
   const predictNoNms = (imageTensor) => {
     const classDetections = [
       [-1, -1, -1, -1, -1],
@@ -319,4 +365,5 @@ export const useModel = () => {
   };
 
   return [dps, modelReady, message, predictNoNms];
+  // return [dps, modelReady, message, predictNms];
 };

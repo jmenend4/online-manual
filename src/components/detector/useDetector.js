@@ -349,7 +349,7 @@ export const useDetector = (
   const drawDetection = (index) => {
     // const _detections = [...drawnDetections];
     const _detections = detectionsBuffer.current[index].map((det, cls) => (
-      //   <>
+      // <>
       <div
         key={"__detection_class_" + cls}
         id={"__detection_class_" + cls}
@@ -373,20 +373,20 @@ export const useDetector = (
       >
         <div className="plus-sign">+</div>
       </div>
-      //     {/* {cls === 1 && (
-      //       <div
-      //         key={"__detection_class_" + cls}
-      //         style={{
-      //           position: "absolute",
-      //           left: det[1] - det[3] / 2,
-      //           top: det[0] - det[2] / 2,
-      //           width: det[3],
-      //           height: det[2],
-      //           border: "2px solid blue"
-      //         }}
-      //       ></div>
-      //     )}
-      //   </> */}
+      //   {/* {cls === 1 && (
+      //     <div
+      //       key={"__detection_class_" + cls}
+      //       style={{
+      //         position: "absolute",
+      //         left: det[1] - det[3] / 2,
+      //         top: det[0] - det[2] / 2,
+      //         width: det[3],
+      //         height: det[2],
+      //         border: "2px solid blue"
+      //       }}
+      //     ></div>
+      //   )}
+      // </> */}
     ));
     // _detections[1] = null;
     setDrawnDetections(_detections);

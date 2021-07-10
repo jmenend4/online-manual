@@ -83,7 +83,7 @@ const VideoCard = ({
         onPlay={onPlay}
         onPause={onPause}
         onEnded={onEnded}
-        controls={playing ? "true" : "false"}
+        controls={playing ? true : false}
         className="video-card"
         src={videos[cardIndex] + "#t=0.001"}
         style={{
