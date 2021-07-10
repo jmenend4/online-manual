@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import NextStepButton from "../common/next-step/NextStepButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useModel } from "./model/useModel";
+import { useModel } from "./useModel";
 import { useDetector } from "./useDetector";
 import DetectedFeatureCard from "../detected-feature-card/DetectedFeatureCard";
 import "./detector.css";
@@ -20,15 +20,16 @@ const Detector = ({
 }) => {
   const [detect, setDetect] = useState(false);
   const [selectedDetection, setSelectedDetection] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [cameraError, setCameraError] = useState(false);
   const canvas = useRef(null);
-  const [dps, predict] = useModel();
+  const [dps, modelReady, message, predict] = useModel();
   const cam = useRef(null);
   const [camReady, setCamReady] = useState(false);
   const detections = useDetector(
     dps,
     cam,
     canvas,
+    88,
     predict,
     detect,
     setSelectedDetection,
@@ -42,14 +43,6 @@ const Detector = ({
   }, [features.length]);
 
   useEffect(() => {
-    setMessage(
-      "Este dispositivo puede realizar " +
-        Math.floor(dps) +
-        " detecciones por segundo. Y también puede detectar algunas caras como componentes :)"
-    );
-  }, [dps]);
-
-  useEffect(() => {
     let track;
     const constraints = {
       video: {
@@ -57,18 +50,21 @@ const Detector = ({
       },
       audio: false
     };
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      track = stream.getTracks()[0];
-      cam.current.srcObject = stream;
-      cam.current.playsinline = true;
-      cam.current.onloadedmetadata = () => {
-        canvas.current.width = viewPortWidth;
-        canvas.current.height =
-          (viewPortWidth * cam.current.videoHeight) / cam.current.videoWidth;
-        cam.current.play();
-        setCamReady(true);
-      };
-    });
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        track = stream.getTracks()[0];
+        cam.current.srcObject = stream;
+        cam.current.playsinline = true;
+        cam.current.onloadedmetadata = () => {
+          canvas.current.width = viewPortWidth;
+          canvas.current.height =
+            (viewPortWidth * cam.current.videoHeight) / cam.current.videoWidth;
+          cam.current.play();
+          setCamReady(true);
+        };
+      })
+      .catch(() => setCameraError(true));
     return () => {
       if (track) {
         track.stop();
@@ -83,7 +79,7 @@ const Detector = ({
     >
       <canvas
         ref={canvas}
-        style={{ position: "absolute", top: "0px", left: "0px" }}
+        style={{ position: "absolute", top: "88px", left: "0px" }}
         onClick={(e) => {
           e.stopPropagation();
           setSelectedDetection(null);
@@ -94,21 +90,26 @@ const Detector = ({
         playsInline
         style={{ display: "none", width: viewPortWidth }}
       ></video>
-      {!dps && !detect && (
+      {cameraError && (
+        <div className="preparing" style={{ "--width": viewPortWidth }}>
+          {" "}
+          <h1 className="camera-error">
+            Disculpas, no se puede usar la cámara.
+          </h1>
+        </div>
+      )}
+      {!modelReady && !detect && (
         <div className="preparing" style={{ "--width": viewPortWidth }}>
           <h1 className="preparing-message">Preparando para detectar</h1>{" "}
           <h2 className="wait">Aguardá un instante por favor</h2>
         </div>
       )}
-      {dps && !detect && camReady && (
+      {modelReady && !detect && camReady && (
         <div className="preparing" style={{ "--width": viewPortWidth }}>
           <h1 className="preparing-message">Listo!</h1>
-          <h2 className="prepared-message">
-            El detector fue entrenado para detectar los controles de tracción de
-            una Ranger 2020 <br></br>
-          </h2>
           <h1 className="preparing-message">
-            Apuntá la cámara y mantenela quieta por unos instantes
+            Apuntá la cámara a los controles de tracción y mantenela quieta por
+            unos instantes
             <br></br>
           </h1>
           <h2 className="prepared-message">Tocá la detección</h2>
@@ -135,7 +136,7 @@ const Detector = ({
           />
         </div>
       )}
-      {dps && detect && <> {detections} </>}
+      {modelReady && detect && <> {detections} </>}
       <div
         className="detector-header"
         style={{

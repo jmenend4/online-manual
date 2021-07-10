@@ -68,6 +68,20 @@
   overflow: hidden;
 }
 
+.preparing .camera-error {
+  display: block;
+  color: rgb(255, 0, 0);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: calc(var(--height-scale) * 20px);
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: calc(var(--height-scale) * 24px);
+  text-align: center;
+  margin: 0 0 16px 0;
+  cursor: default;
+  overflow: hidden;
+}
+
 .preparing .wait {
   display: block;
   color: rgb(102, 102, 102);
@@ -110,9 +124,7 @@
 
 .detection-position {
   position: absolute;
-  /* left: calc((var(--left) + (var(--width) - 40) / 2) * 1px); */
   left: calc((var(--x) - 20) * 1px);
-  /* top: calc((var(--top) + ((var(--height) - 40) / 2)) * 1px); */
   top: calc((var(--y) - 20) * 1px);
   /* animation-name: detection-movement;
   animation-fill-mode: forwards;

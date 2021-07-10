@@ -5,6 +5,7 @@ export const useDetector = (
   dps,
   video,
   canvas,
+  headerHeight,
   predict,
   detect,
   setClickedDetection,
@@ -30,7 +31,7 @@ export const useDetector = (
   ]);
 
   useEffect(() => {
-    if (dps) {
+    if (dps > 0) {
       detectionFramesInterval.current = Math.ceil(FPS / Math.floor(dps));
       setLaunchTimeout(detectionFramesInterval.current * FRAME_SPAN * 2);
       initBuffers();
@@ -359,7 +360,7 @@ export const useDetector = (
         style={{
           display: det[0] < 0 || cls === 1 ? "none" : "flex",
           "--x": det[1],
-          "--y": det[0]
+          "--y": det[0] + headerHeight
           // "--next-x": nextDet[3] === -1 ? currDet[1] : nextDet[1],
           // "--next-y": nextDet[3] === -1 ? currDet[0] : nextDet[0],
           // "--animation-duration": frameRate * detectionFramesToWait.current

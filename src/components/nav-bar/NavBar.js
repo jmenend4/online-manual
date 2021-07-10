@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import AppTutorial from "../app-tutorial/AppTutorial";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faCamera, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faCamera,
+  faInfoCircle
+} from "@fortawesome/free-solid-svg-icons";
 import "./nav-bar.css";
+import Info from "../app-tutorial/Info";
 
 const NavBar = ({ viewPortWidth, history }) => {
-  const navHome = (e) => {
+  const [firstTime, setFirstTime] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+
+  useEffect(() => {
+    const _firstTime = window.localStorage.getItem("firstTime");
+    setFirstTime(_firstTime !== "false");
+  }, []);
+
+  const navHome = () => {
     history.push("/");
   };
   const navCameraView = () => {
@@ -31,7 +45,7 @@ const NavBar = ({ viewPortWidth, history }) => {
             marginTop: "16px",
             marginBottom: "24px"
           }}
-          onClick={(e) => navHome(e)}
+          onClick={() => navHome()}
         />
         <FontAwesomeIcon
           icon={faCamera}
@@ -62,7 +76,7 @@ const NavBar = ({ viewPortWidth, history }) => {
         </div>
 
         <FontAwesomeIcon
-          icon={faSearch}
+          icon={faInfoCircle}
           style={{
             cursor: "pointer",
             height: "24px",
@@ -71,9 +85,13 @@ const NavBar = ({ viewPortWidth, history }) => {
             marginTop: "16px",
             marginBottom: "24px"
           }}
-          onClick={() => search()}
+          onClick={() => setShowInfo(true)}
         />
       </div>
+      {firstTime && (
+        <AppTutorial setFirstTime={setFirstTime} setShowInfo={setShowInfo} />
+      )}
+      {showInfo && <Info setShowInfo={setShowInfo} />}
     </>
   );
 };

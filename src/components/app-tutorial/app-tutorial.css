@@ -1,0 +1,101 @@
+.app-tutorial-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(var(--height) * 1px);
+  width: calc(var(--width) * 1px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.app-tutorial-step-one-card {
+  position: absolute;
+  top: 152px;
+  left: 24px;
+  width: calc((var(--width) - 48) * 1px);
+  border-radius: 8px;
+  padding: 32px 24px 72px 24px;
+  background-color: white;
+  box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+}
+
+.app-tutorial-content {
+  color: rgba(102, 102, 102, 1);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.39px;
+  line-height: 24px;
+  margin: 0;
+  cursor: default;
+}
+
+.app-tutorial-nav {
+  position: absolute;
+  right: 24px;
+  bottom: 32px;
+  width: min-content;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Text", sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.39px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.app-tutorial-nav-next {
+  right: 24px;
+}
+
+.app-tutorial-nav-prev {
+  left: 24px;
+}
+
+.app-tutorial-step-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-info-icon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.app-tutorial-step-icon-label {
+  border: 1px solid rgb(0, 122, 255);
+  border-radius: 20%;
+  color: rgb(0, 122, 255);
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 8px;
+  line-height: 10px;
+  margin-bottom: 16px;
+  cursor: default;
+  overflow: hidden;
+}
+
+.info-card {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  height: calc((var(--height) - 48) * 1px);
+  width: calc((var(--width) - 48) * 1px);
+  border-radius: 8px;
+  padding: 64px 24px 72px 24px;
+  background-color: white;
+  box-shadow: 0 4px 8px 4px rgba(23, 23, 23, 0.1);
+}
+
+.info-card > .info-card-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.info-card > .info-content {
+  height: 100%;
+  width: 100%;
+}

@@ -6,7 +6,7 @@ import { useDemoVideo } from "./demoFrames";
 import NextStepButton from "../common/next-step/NextStepButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { useModel } from "./model/useModel";
+import { useModel } from "./useModel";
 import { useDetector } from "./useDetector";
 import DetectedFeatureCard from "../detected-feature-card/DetectedFeatureCard";
 import "./detector.css";
@@ -22,15 +22,15 @@ const Detector = ({
 }) => {
   const [detect, setDetect] = useState(false);
   const [selectedDetection, setSelectedDetection] = useState(null);
-  const [message, setMessage] = useState(null);
   const canvas = useRef(null);
   const [demoVideo, videoLoaded] = useDemoVideo();
   const frame = useRef(null);
-  const [dps, predict] = useModel();
+  const [dps, modelReady, message, predict] = useModel();
   const detections = useDetector(
     dps,
     frame,
     canvas,
+    0,
     predict,
     detect,
     setSelectedDetection,
@@ -42,14 +42,6 @@ const Detector = ({
       initializeFeatures();
     }
   }, [features.length]);
-
-  useEffect(() => {
-    setMessage(
-      "Este dispositivo puede realizar " +
-        Math.floor(dps) +
-        " detecciones por segundo."
-    );
-  }, [dps]);
 
   useEffect(() => {
     let intervalId;
@@ -82,7 +74,7 @@ const Detector = ({
           setSelectedDetection(null);
         }}
       ></canvas>
-      {!dps && !detect && (
+      {!modelReady && !detect && (
         <div
           className="preparing"
           style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
@@ -91,7 +83,7 @@ const Detector = ({
           <h2 className="wait">Aguardá un instante por favor</h2>
         </div>
       )}
-      {dps && !detect && videoLoaded && (
+      {modelReady && !detect && videoLoaded && (
         <div
           className="preparing"
           style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
@@ -129,7 +121,7 @@ const Detector = ({
           />
         </div>
       )}
-      {dps && detect && <> {detections} </>}
+      {modelReady && detect && <> {detections} </>}
       <div
         className="detector-header"
         style={{
