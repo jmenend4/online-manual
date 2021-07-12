@@ -8,6 +8,7 @@ export const useDetector = (
   headerHeight,
   predict,
   detect,
+  detectionPaused,
   setClickedDetection,
   selectedDetection
 ) => {
@@ -62,14 +63,15 @@ export const useDetector = (
     let detectionIntervalId;
     let bufferingGapTimeoutId;
     let videoBufferConsumeIntervalId;
-    if (launchTimeout && detect) {
+    if (launchTimeout && detect && !detectionPaused) {
       detectionIntervalId = bufferingLoop();
       bufferingGapTimeoutId = setTimeout(() => {
         videoBufferConsumeIntervalId = renderingLoop();
         //   }, launchTimeout);
       }, 1000);
     }
-    return () => {
+
+    const clearEffects = () => {
       if (detectionIntervalId) {
         clearInterval(detectionIntervalId);
       }
@@ -80,7 +82,13 @@ export const useDetector = (
         clearTimeout(videoBufferConsumeIntervalId);
       }
     };
-  }, [launchTimeout, detect]);
+
+    if (detectionPaused) {
+      clearEffects();
+    }
+
+    return clearEffects;
+  }, [launchTimeout, detect, detectionPaused]);
 
   const bufferingLoop = () => {
     const indexGen = bufferIndexGen(framesBuffer.current.length);

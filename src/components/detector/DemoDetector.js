@@ -10,6 +10,7 @@ import { useModel } from "./useModel";
 import { useDetector } from "./useDetector";
 import DetectedFeatureCard from "../detected-feature-card/DetectedFeatureCard";
 import "./detector.css";
+import ControlsBar from "./ControlsBar";
 
 const Detector = ({
   features,
@@ -21,6 +22,7 @@ const Detector = ({
   history
 }) => {
   const [detect, setDetect] = useState(false);
+  const [detectionPaused, setDetectionPaused] = useState(false);
   const [selectedDetection, setSelectedDetection] = useState(null);
   const canvas = useRef(null);
   const [demoVideo, videoLoaded] = useDemoVideo();
@@ -33,6 +35,7 @@ const Detector = ({
     0,
     predict,
     detect,
+    detectionPaused,
     setSelectedDetection,
     selectedDetection
   );
@@ -132,6 +135,13 @@ const Detector = ({
         setSelectedDetection={setSelectedDetection}
         features={features}
       />
+      {videoLoaded && detect && (
+        <ControlsBar
+          videoHeight={demoVideo.current[0].height}
+          detectionPaused={detectionPaused}
+          setDetectionPaused={setDetectionPaused}
+        />
+      )}
     </div>
   );
 };

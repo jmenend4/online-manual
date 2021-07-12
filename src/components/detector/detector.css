@@ -156,3 +156,15 @@
   padding: 0;
   overflow: hidden;
 }
+
+.controls-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: calc(var(--height) * 1px);
+  width: calc(var(--width) * 1px);
+  background-color: white;
+}
