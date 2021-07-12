@@ -4,23 +4,10 @@ import Detector from "./detector/Detector";
 import DemoDetector from "./detector/DemoDetector";
 import MainPage from "./main/MainPage";
 import Tutorial from "./tutorial/Tutorial";
+import "./app.css";
 
 class App extends React.Component {
   state = { errorMessage: null };
-
-  // componentDidMount() {
-  //   const el = document.documentElement;
-
-  //   if (el.requestFullscreen) {
-  //     el.requestFullscreen();
-  //   } else if (el.webkitRequestFullscreen) {
-  //     el.webkitRequestFullscreen();
-  //   } else if (el.mozRequestFullScreen) {
-  //     el.webkitRequestFullscreen();
-  //   } else if (el.msRequestFullscreen) {
-  //     el.msRequestFullscreen();
-  //   }
-  // }
 
   componentDidCatch(error, info) {
     this.setState({ errorMessage: error.message });
@@ -43,6 +30,9 @@ class App extends React.Component {
             {this.state.errorMessage}
           </p>
         )}
+        <div className="landscape-warning">
+          Por favor colocar el celular en posición vertical
+        </div>
       </>
     );
   }

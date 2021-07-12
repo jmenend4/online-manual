@@ -1,0 +1,21 @@
+.landscape-warning {
+  display: none;
+}
+
+@media (orientation: landscape) {
+  .landscape-warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    color: red;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: white;
+  }
+}
