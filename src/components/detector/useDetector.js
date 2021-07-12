@@ -187,8 +187,8 @@ export const useDetector = (
   };
 
   const calcTractionSwitch = (currDet) => {
-    if (currDet[0][0] > 0 && !(currDet[1][0] > 0)) {
-      currDet[2][0] = -1;
+    if (currDet[0][0] > 0 && !(currDet[2][0] > 0)) {
+      currDet[0][0] = -1;
     }
   };
 
