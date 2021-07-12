@@ -177,8 +177,18 @@ export const useDetector = (
   };
 
   const calcDets = (currDet) => {
-    if (currDet[1][0] > 0) {
+    if (
+      currDet[1][0] > 0 &&
+      (currDet[2][0] > 0 || currDet[3][0] > 0 || currDet[4][0] > 0)
+    ) {
       calcTractionButtonsDets(currDet);
+    }
+    calcTractionSwitch(currDet);
+  };
+
+  const calcTractionSwitch = (currDet) => {
+    if (currDet[0][0] > 0 && !(currDet[1][0] > 0)) {
+      currDet[2][0] = -1;
     }
   };
 

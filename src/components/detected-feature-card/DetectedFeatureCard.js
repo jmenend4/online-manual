@@ -71,7 +71,7 @@ const DetectedFeatureCard = ({
           ? -(viewPortHeight - 32)
           : expanded
           ? 0
-          : -(viewPortHeight - 320)
+          : -(viewPortHeight - 400)
       }}
       onTransitionEnd={(e) => {
         transitionEnd(e);

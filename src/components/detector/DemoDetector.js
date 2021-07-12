@@ -27,7 +27,7 @@ const Detector = ({
   const canvas = useRef(null);
   const [demoVideo, videoLoaded] = useDemoVideo();
   const frame = useRef(null);
-  const [dps, modelReady, message, predict] = useModel();
+  const [dps, modelReady, message, predict] = useModel(0.6);
   const detections = useDetector(
     dps,
     frame,
@@ -92,23 +92,22 @@ const Detector = ({
           style={{ "--width": viewPortWidth, "--height-scale": heightScale }}
         >
           <h1 className="preparing-message">Listo!</h1>
-          <h2 className="prepared-message">Tocá la detección</h2>
-          <div
-            className="detection"
-            style={{ margin: "16px 24px 16px 24px" }}
-            onClick={(e) => {
-              e.stopPropagation();
-              setDetect(true);
-            }}
-          >
-            <div className="plus-sign">+</div>
+          <div className="inline-paragraph">
+            <h2 className="prepared-message">Tocá</h2>
+            <div
+              className="inline-detection"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDetect(true);
+              }}
+            >
+              <div className="inline-plus-sign">+</div>
+            </div>
+            <h2 className="prepared-message">para más información</h2>
           </div>
-          <h2 className="prepared-message">
-            para obtener más información sobre el componente
-          </h2>
           <h2 className="wait">{message}</h2>
           <NextStepButton
-            legend="LANZAR DETECCIÓN SOBRE VIDEO"
+            legend="DETECTAR VIDEO"
             onNextClick={(e) => {
               e.stopPropagation();
               setDetect(true);

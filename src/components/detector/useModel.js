@@ -6,9 +6,8 @@ import testImgSrc from "../../assets/Archivo_043.jpeg";
 // import testImgSrc from "../../../assets/Archivo_019.jpeg";
 import { useDemoVideo } from "./demoFrames";
 
-export const useModel = () => {
+export const useModel = (scoreThresh = 0.8) => {
   // const NUM_CLASSES = 5;
-  const SCORE_THRESH = 0.8;
 
   const model = useRef(null);
   const [demoVideo, demoVideoLoaded] = useDemoVideo();
@@ -120,7 +119,7 @@ export const useModel = () => {
             scores,
             100,
             0.5,
-            SCORE_THRESH
+            scoreThresh
           );
           const nmsScores = nmsResult.selectedScores;
           const nmsBoxes = tf
@@ -180,7 +179,7 @@ export const useModel = () => {
           const scores = tf.reshape(initialDetection[3], [-1]);
           const classes = tf.reshape(initialDetection[1], [-1]);
           const scale = initialDetection[2];
-          const mask = scores.greater(tf.tensor1d([SCORE_THRESH]));
+          const mask = scores.greater(tf.tensor1d([scoreThresh]));
           const filteredBoxes = booleanMaskSync(boxes, mask).mul(scale);
           const filteredScores = booleanMaskSync(scores, mask);
           const filteredClasses = booleanMaskSync(classes, mask);
@@ -293,7 +292,7 @@ export const useModel = () => {
         scores,
         100,
         0.5,
-        SCORE_THRESH
+        scoreThresh
       );
       const nmsScores = nmsResult.selectedScores;
       const nmsBoxes = tf.gather(boxes, nmsResult.selectedIndices).mul(scale);
@@ -334,7 +333,7 @@ export const useModel = () => {
       const scores = tf.reshape(initialDetection[3], [-1]);
       const classes = tf.reshape(initialDetection[1], [-1]);
       const scale = initialDetection[2];
-      const mask = scores.greater(tf.tensor1d([SCORE_THRESH]));
+      const mask = scores.greater(tf.tensor1d([scoreThresh]));
       const filteredBoxes = booleanMaskSync(boxes, mask).mul(scale);
       const filteredScores = booleanMaskSync(scores, mask);
       const filteredClasses = booleanMaskSync(classes, mask);
@@ -364,6 +363,6 @@ export const useModel = () => {
     return classDetections;
   };
 
-  return [dps, modelReady, message, predictNoNms];
-  // return [dps, modelReady, message, predictNms];
+  // return [dps, modelReady, message, predictNoNms];
+  return [dps, modelReady, message, predictNms];
 };

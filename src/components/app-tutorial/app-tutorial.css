@@ -9,7 +9,7 @@
 
 .app-tutorial-step-one-card {
   position: absolute;
-  top: 152px;
+  top: 120px;
   left: 24px;
   width: calc((var(--width) - 48) * 1px);
   border-radius: 8px;

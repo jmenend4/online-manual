@@ -111,24 +111,22 @@ const Detector = ({
         <div className="preparing" style={{ "--width": viewPortWidth }}>
           <h1 className="preparing-message">Listo!</h1>
           <h1 className="preparing-message">
-            Apuntá la cámara a los controles de tracción y mantenela quieta por
-            unos instantes
+            Apuntá la cámara y mantenela quieta un instante.
             <br></br>
           </h1>
-          <h2 className="prepared-message">Tocá la detección</h2>
-          <div
-            className="detection"
-            style={{ margin: "16px 24px 16px 24px" }}
-            onClick={(e) => {
-              e.stopPropagation();
-              setDetect(true);
-            }}
-          >
-            <div className="plus-sign">+</div>
+          <div className="inline-paragraph">
+            <h2 className="prepared-message">Tocá</h2>
+            <div
+              className="inline-detection"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDetect(true);
+              }}
+            >
+              <div className="inline-plus-sign">+</div>
+            </div>
+            <h2 className="prepared-message">para más información</h2>
           </div>
-          <h2 className="prepared-message">
-            para obtener más información sobre el componente
-          </h2>
           <h2 className="wait">{message}</h2>
           <NextStepButton
             legend="INICIAR DETECCIÓN"

@@ -137,12 +137,12 @@ const Info = ({ setShowInfo, viewPortHeight, viewPortWidth }) => {
             <a href="https://get.webgl.org/" target="_blank" rel="noreferrer">
               WebGL
             </a>
-            . El el futuro se podrá habilitar un backend Web Assembly (
+            . Pudiéndose habilitar un backend Web Assembly (
             <a href="https://webassembly.org/" target="_blank" rel="noreferrer">
               WASM
             </a>
             ) para equipos con baja performance o que no tengan una unidad de
-            procesamiento gráfico (GPU)
+            procesamiento gráfico (GPU).
           </p>
         </div>
       </div>
