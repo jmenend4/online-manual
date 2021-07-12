@@ -166,5 +166,6 @@
   left: 0;
   height: calc(var(--height) * 1px);
   width: calc(var(--width) * 1px);
-  background-color: white;
+  background-color: rgb(249, 249, 249);
+  box-shadow: 0 0.33px 0 0 rgba(0, 0, 0, 0.3);
 }

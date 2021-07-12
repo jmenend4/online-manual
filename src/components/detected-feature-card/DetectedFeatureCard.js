@@ -42,6 +42,7 @@ const DetectedFeatureCard = ({
   const close = (e) => {
     e.stopPropagation();
     setSelectedDetection(null);
+    setExpanded(false);
     setClosed(true);
   };
 
